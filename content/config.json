@@ -1,9 +1,9 @@
 {
-  "title": "Blog by John Doe",
-  "url": "https://lumen.alxshelepenok.com",
-  "subtitle": "Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.",
+  "title": "Osmosis Podcast",
+  "url": "https://osmosiscast.com",
+  "subtitle": "A science focused podcast",
   "copyright": "© All rights reserved.",
-  "googleAnalyticsId": "UA-73379983-2",
+  "googleAnalyticsId": "",
   "disqusShortname": "",
   "postsLimit": 4,
   "pathPrefix": "/",
@@ -13,22 +13,22 @@
       "path": "/"
     },
     {
-      "label": "About me",
+      "label": "About",
       "path": "/pages/about"
     },
     {
-      "label": "Contact me",
+      "label": "Contact",
       "path": "/pages/contacts"
     }
   ],
   "author": {
-    "name": "John Doe",
-    "photo": "/photo.jpg",
-    "bio": "Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.",
+    "name": "Osmosis",
+    "photo": "/photo.png",
+    "bio": "A science focused podcast bringing together Jamie McMillan (aspiring scientist) and Calum Morris (really good teacher) to breakdown a scientific paper into deliciously digestible morsels.",
     "contacts": {
-      "rss": "",
-      "email": "",
-      "github": "alxshelepenok/gatsby-starter-lumen",
+      "rss": "https://feeds.buzzsprout.com/2312234.rss",
+      "email": "osmosiscast@gmail.com",
+      "github": "osmosiscast/osmosis-website",
       "facebook": "#",
       "telegram": "#",
       "twitter": "#",
@@ -39,7 +39,7 @@
       "weibo": "",
       "gitlab": "",
       "medium": "",
-      "youtube": "",
+      "youtube": "@Osmosiscast",
       "codepen": "",
       "soundcloud": "",
       "bluesky": ""
