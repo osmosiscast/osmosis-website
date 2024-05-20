@@ -1,19 +1,21 @@
 {
-  "name": "gatsby-starter-lumen",
-  "version": "1.6.147",
-  "description": "A constantly evolving and thoughtful architecture for creating static blogs with Gatsby",
+  "name": "osmosis-website",
+  "version": "0.0.1",
+  "description": "Home of the Osmosis podcast",
   "keywords": [
-    "gatsby",
-    "graphql",
-    "react",
+    "osmosis",
+    "podcast",
+    "science",
+    "jamie",
+    "calum",
     "blog"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/alxshelepenok/gatsby-starter-lumen.git"
+    "url": "https://github.com/osmosiscast/osmosis-website"
   },
   "license": "MIT",
-  "author": "Alexander Shelepenok <alxshelepenok@gmail.com>",
+  "author": "Osmosis Media <osmosiscast@gmail.com>",
   "scripts": {
     "build": "npm run clean && gatsby build",
     "clean": "rimraf .cache public",
