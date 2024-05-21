@@ -7,7 +7,7 @@ exports[`Post renders correctly 1`] = `
       className=""
       href="/"
     >
-      All Articles
+      All Episodes
     </a>
   </div>
   <div>

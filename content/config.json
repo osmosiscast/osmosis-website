@@ -9,7 +9,7 @@
   "pathPrefix": "/",
   "menu": [
     {
-      "label": "Articles",
+      "label": "Episodes",
       "path": "/"
     },
     {

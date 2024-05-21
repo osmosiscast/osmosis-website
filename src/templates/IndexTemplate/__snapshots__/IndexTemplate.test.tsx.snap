@@ -27,21 +27,21 @@ exports[`IndexTemplate renders correctly 1`] = `
             <a
               href="/"
             >
-              Articles
+              Episodes
             </a>
           </li>
           <li>
             <a
               href="/pages/about"
             >
-              About Me
+              About
             </a>
           </li>
           <li>
             <a
               href="/pages/contacts"
             >
-              Contact Me
+              Contact
             </a>
           </li>
         </ul>
