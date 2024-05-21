@@ -17,7 +17,7 @@ tags:
   - "#IntellectualBanter"
   - "#OsmosisAdventures"
 description: "Welcome to Osmosis, the podcast where two best friends bring science to life! 🎙️ In each episode, we explore a different scientific paper, unraveling its complexities and making it accessible to everyone."
-socialImage: "../photo.png"
+socialImage: "./media/photo.png"
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) kick it off Osmosis with _The physics of baking good pizza_! 

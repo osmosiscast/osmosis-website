@@ -10,7 +10,7 @@ tags:
   - "Discussion"
   - "Future"
 description: "Jamie McMillan and Calum Morris wrap up the first season of Osmosis with an outlook on what is still to come. We reflect on the first season and highlight future plans."
-socialImage: "../photo.png"
+socialImage: "./media/photo.png"
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) wrap up the first season of Osmosis with an outlook on what is still to come. We reflect on the first season and highlight future plans:
