@@ -5,6 +5,17 @@ template: "post"
 draft: false
 slug: "/posts/pizza-alchemy"
 category: "Season 1"
+categories:
+  - "#OsmosisPodcast"
+  - "#ScientificSlice"
+  - "#BestFriendsInScience"
+  - "#PaperPerusal"
+  - "#KnowledgeNosh"
+  - "#PodcastExploration"
+  - "#CuriousConversations"
+  - "#ScienceSimplified"
+  - "#IntellectualBanter"
+  - "#OsmosisAdventures"
 tags:
   - "#OsmosisPodcast"
   - "#ScientificSlice"
@@ -18,6 +29,10 @@ tags:
   - "#OsmosisAdventures"
 description: "Welcome to Osmosis, the podcast where two best friends bring science to life! 🎙️ In each episode, we explore a different scientific paper, unraveling its complexities and making it accessible to everyone."
 socialImage: "./media/photo.png"
+season: "Season 1"
+number: 1
+url: "file.mp3"
+size: 0
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) kick it off Osmosis with _The physics of baking good pizza_! 

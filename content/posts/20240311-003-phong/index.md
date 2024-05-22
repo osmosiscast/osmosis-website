@@ -5,12 +5,20 @@ template: "post"
 draft: false
 slug: "/posts/illuminating-the-past"
 category: "Season 1"
+categories:
+  - "Computer Processing"
+  - "Rendering"
+  - "History"
 tags:
   - "Computer Processing"
   - "Rendering"
   - "History"
 description: "Jamie McMillan and Calum Morris continue Osmosis as we turn back the clock to the era of analog innovation as we explore the fascinating world of Illumination for computer-generated pictures."
 socialImage: "./media/photo.png"
+season: "Season 1"
+number: 3
+url: "file.mp3"
+size: 0
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) continue Osmosis as we turn back the clock to the era of analog innovation as we explore the fascinating world of Illumination for computer-generated pictures. 💡🖥️ Join us on a journey through the early days of computer graphics, where CRT machines were the wizards behind rendering 3D objects.
