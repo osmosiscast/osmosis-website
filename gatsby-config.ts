@@ -3,6 +3,49 @@ import path from "path";
 import config from "./content/config.json";
 import * as types from "./internal/gatsby/types";
 
+const feedOptions = {
+  title: config.title,
+  description: config.subtitle,
+  feed_url: "http://www.osmosiscast.com/rss.xml",
+  site_url: config.url,
+  image_url: "/content/photo.png",
+  // docs: "http://example.com/rss/docs.html",
+  managingEditor: config.author,
+  webMaster: config.author,
+  copyright: config.copyright,
+  language: "en",
+  categories: ["Natural Sciences"],
+  // pubDate: "May 20, 2019 04:00:00 GMT",
+  ttl: "60",
+  custom_namespaces: {
+    itunes: "http://www.itunes.com/dtds/podcast-1.0.dtd",
+  },
+  custom_elements: [
+    { "itunes:subtitle": config.subtitle },
+    { "itunes:author": config.author },
+    { "itunes:summary": config.subtitle },
+    {
+      "itunes:owner": [
+        { "itunes:name": config.author },
+        { "itunes:email": config.author.contacts.email },
+      ],
+    },
+    {
+      "itunes:image": {
+        attr: "/content/photo.png",
+      },
+    },
+    {
+      "itunes:category": [
+        {
+          attr: {
+            text: "Natural Sciences",
+          },
+        },
+      ],
+    },
+  ],
+};
 export default {
   pathPrefix: config.pathPrefix,
   siteMetadata: {
