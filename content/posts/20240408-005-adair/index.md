@@ -5,12 +5,20 @@ template: "post"
 draft: false
 slug: "/posts/clearing-the-picture"
 category: "Season 1"
+categories:
+  - "Image Restoration"
+  - "Computer Processing"
+  - "Machine Learning"
 tags:
   - "Image Restoration"
   - "Computer Processing"
   - "Machine Learning"
 description: "Jamie McMillan and Calum Morris continue Osmosis, we unveil the cutting-edge technology of AdaIR and its transformative impact on noise removal in images."
 socialImage: "./media/photo.png"
+season: "Season 1"
+number: 5
+url: "file.mp3"
+size: 0
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) continue Osmosis, we unveil the cutting-edge technology of AdaIR and its transformative impact on noise removal in images. 📸🔍 Join us as we delve into the intricacies of this revolutionary tool, exploring its applications in video production, content creation, medical imaging, remote sensing, surveillance, and beyond. From enhancing visual clarity to improving diagnostic accuracy, AdaIR is reshaping the way we perceive and interact with images in diverse fields. Get ready to witness the power of precision and clarity as we journey through the realms of image processing with AdaIR! 🌐🎙️
