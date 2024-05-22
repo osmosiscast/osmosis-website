@@ -65,6 +65,7 @@
     "gatsby-plugin-manifest": "^4.25.0",
     "gatsby-plugin-offline": "^5.25.0",
     "gatsby-plugin-optimize-svgs": "^1.0.5",
+    "gatsby-plugin-podcast-feed": "github:osmosiscast/gatsby-plugin-podcast-feed",
     "gatsby-plugin-sass": "^5.25.0",
     "gatsby-plugin-sharp": "^4.25.1",
     "gatsby-plugin-sitemap": "^5.25.0",
