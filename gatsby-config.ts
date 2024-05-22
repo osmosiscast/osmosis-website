@@ -67,73 +67,9 @@ export default {
       },
     },
     {
-      resolve: "gatsby-plugin-feed",
+      resolve: "gatsby-plugin-podcast-rss-feed",
       options: {
-        query: `
-          {
-            site {
-              siteMetadata {
-                url
-              }
-            }
-          }
-        `,
-        feeds: [
-          {
-            serialize: ({
-              query: { site, allMarkdownRemark },
-            }: {
-              query: {
-                site: {
-                  siteMetadata: {
-                    url: string;
-                  };
-                };
-                allMarkdownRemark: {
-                  edges: Array<types.Edge>;
-                };
-              };
-            }) =>
-              allMarkdownRemark.edges.map(({ node }) => ({
-                ...node.frontmatter,
-                date: node?.frontmatter?.date,
-                description: node?.frontmatter?.description,
-                url:
-                  site.siteMetadata.url +
-                  (node.frontmatter?.slug || node.fields?.slug),
-                guid:
-                  site.siteMetadata.url +
-                  (node.frontmatter?.slug || node.fields?.slug),
-                custom_elements: [{ "content:encoded": node.html }],
-              })),
-            query: `
-              {
-                allMarkdownRemark(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: { frontmatter: { template: { eq: "post" }, draft: { ne: true } } }
-                ) {
-                  edges {
-                    node {
-                      html
-                      fields {
-                        slug
-                      }
-                      frontmatter {
-                        date
-                        title
-                        slug
-                        description
-                      }
-                    }
-                  }
-                }
-              }
-            `,
-            output: "/rss.xml",
-            title: config.title,
-          },
-        ],
+        feedOptions,
       },
     },
     {
