@@ -9,8 +9,8 @@ const feedOptions = {
   site_url: config.url,
   image_url: "/content/photo.png",
   // docs: "http://example.com/rss/docs.html",
-  managingEditor: config.author,
-  webMaster: config.author,
+  managingEditor: config.author.name,
+  webMaster: config.author.name,
   copyright: config.copyright,
   language: "en",
   categories: ["Natural Sciences"],
@@ -22,26 +22,18 @@ const feedOptions = {
   custom_elements: [
     { "itunes:subtitle": config.subtitle },
     { "itunes:author": config.author },
-    { "itunes:summary": config.subtitle },
+    { "itunes:summary": config.author.bio },
     {
       "itunes:owner": [
-        { "itunes:name": config.author },
+        { "itunes:name": config.author.name },
         { "itunes:email": config.author.contacts.email },
       ],
     },
     {
-      "itunes:image": {
-        attr: "/content/photo.png",
-      },
+      "itunes:image": "/content/photo.png",
     },
     {
-      "itunes:category": [
-        {
-          attr: {
-            text: "Natural Sciences",
-          },
-        },
-      ],
+      "itunes:category": "Natural Sciences",
     },
   ],
 };

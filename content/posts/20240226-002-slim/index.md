@@ -5,15 +5,11 @@ template: "post"
 draft: false
 slug: "/posts/japans-slim-touchdown"
 category: "Season 1"
-categories:
-  - "Space"
-  - "Engineering"
 tags:
   - "Space"
   - "Engineering"
 description: "In Episode 001 of OSMOSISCAST, we embark on an interstellar journey as we dive into the recent news surrounding Japan's SLIM (Smart Lander for Investigating Moon) mission."
 socialImage: "./media/photo.png"
-season: "Season 1"
 number: 2
 url: "file.mp3"
 size: 0

@@ -5,17 +5,6 @@ template: "post"
 draft: false
 slug: "/posts/shedding-light-on-dark-energy"
 category: "Season 1"
-categories:
-  - "#DESIExploration"
-  - "#DarkEnergyDiscovery"
-  - "#CosmicRevelations"
-  - "#OSMOSISCASTAstronomy"
-  - "#StargazingScience"
-  - "#CosmicChronicles"
-  - "#DESIInsights"
-  - "#GalacticMapping"
-  - "#UniverseUnveiled"
-  - "#CelestialDiscoveries"
 tags:
   - "#DESIExploration"
   - "#DarkEnergyDiscovery"
@@ -29,7 +18,6 @@ tags:
   - "#CelestialDiscoveries"
 description: "In Episode 005 of OSMOSISCAST, Jamie McMillan and Calum Morris delve into the latest discoveries from DESI, shedding light on dark energy's mysteries."
 socialImage: "./media/photo.png"
-season: "Season 1"
 number: 6
 url: "file.mp3"
 size: 0
