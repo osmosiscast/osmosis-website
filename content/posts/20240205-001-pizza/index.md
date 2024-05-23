@@ -5,17 +5,6 @@ template: "post"
 draft: false
 slug: "/posts/pizza-alchemy"
 category: "Season 1"
-categories:
-  - "#OsmosisPodcastNOTREALLY@@@@"
-  - "#ScientificSlice"
-  - "#BestFriendsInScience"
-  - "#PaperPerusal"
-  - "#KnowledgeNosh"
-  - "#PodcastExploration"
-  - "#CuriousConversations"
-  - "#ScienceSimplified"
-  - "#IntellectualBanter"
-  - "#OsmosisAdventures"
 tags:
   - "#OsmosisPodcast"
   - "#ScientificSlice"
@@ -29,7 +18,6 @@ tags:
   - "#OsmosisAdventures"
 description: "Welcome to Osmosis, the podcast where two best friends bring science to life! 🎙️ In each episode, we explore a different scientific paper, unraveling its complexities and making it accessible to everyone."
 socialImage: "./media/photo.png"
-season: "Season 1"
 number: 1
 url: "file.mp3"
 size: 0

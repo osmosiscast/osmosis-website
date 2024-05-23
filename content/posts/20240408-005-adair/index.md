@@ -5,17 +5,12 @@ template: "post"
 draft: false
 slug: "/posts/clearing-the-picture"
 category: "Season 1"
-categories:
-  - "Image Restoration"
-  - "Computer Processing"
-  - "Machine Learning"
 tags:
   - "Image Restoration"
   - "Computer Processing"
   - "Machine Learning"
 description: "Jamie McMillan and Calum Morris continue Osmosis, we unveil the cutting-edge technology of AdaIR and its transformative impact on noise removal in images."
 socialImage: "./media/photo.png"
-season: "Season 1"
 number: 5
 url: "file.mp3"
 size: 0

@@ -5,17 +5,12 @@ template: "post"
 draft: false
 slug: "/posts/wrapping-up-season-one-of-the-osmosis-podcast"
 category: "Season 1"
-tags:
-  - "Reflection"
-  - "Discussion"
-  - "Future"
 categories:
   - "Reflection"
   - "Discussion"
   - "Future"
 description: "Jamie McMillan and Calum Morris wrap up the first season of Osmosis with an outlook on what is still to come. We reflect on the first season and highlight future plans."
 socialImage: "./media/photo.png"
-season: "Season 1"
 number: 7
 url: "file.mp3"
 size: 0

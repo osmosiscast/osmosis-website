@@ -5,17 +5,12 @@ template: "post"
 draft: false
 slug: "/posts/exploring-plutonium"
 category: "Season 1"
-categories:
-  - "Radioactivity"
-  - "History"
-  - "Nuclear"
 tags:
   - "Radioactivity"
   - "History"
   - "Nuclear"
 description: "In episode 003 of OSMOSISCAST, Jamie McMillan and Calum Morris embark on a journey through the annals of atomic history as we delve into the mysteries of plutonium, fission, and the haunting legend of the Demon Core."
 socialImage: "./media/photo.png"
-season: "Season 1"
 number: 4
 url: "file.mp3"
 size: 0
