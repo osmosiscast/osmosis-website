@@ -1,13 +1,20 @@
 ---
-title: "About me"
+title: "About"
 template: "page"
-socialImage: "./notebook.jpg"
+socialImage: "./calumAndJamie.jpg"
 ---
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+Jamie is a physicist by training and has many years experience in temperature measurement. He is currently working on the calibration of a thermal camera in space.
 
-![Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.](/notebook.jpg)
+Calum is a teacher with a background in Chemistry. His current interests are taking his dog for a walk.
 
-_Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi._
+![Jamie and Calum together](/calumAndJamie.jpg)
 
-Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+During initial conceptualisation of the Osmosis podcast we were interested in enabling:
+
+- News of interesting scientific developments
+- Relating the topics back to GCSE concepts
+
+The podcast should be intellectually useful and enjoyable for listeners at any level of scientific understanding, they may be curious but are not an expert.
+
+We landed on a format where we **take a scientific paper and break it down into digestible chunks**. We hope that you as a listener will be able to take away new understanding on a specific field of research.
