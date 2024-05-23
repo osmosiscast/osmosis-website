@@ -14,6 +14,8 @@ socialImage: "./media/photo.png"
 number: 5
 url: "https://www.buzzsprout.com/2312234/14841918-clearing-the-picture-exploring-adair-for-noise-removal-in-diverse-applications.mp3"
 size: 40963535
+season: 1
+duration: 3406
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) continue Osmosis, we unveil the cutting-edge technology of AdaIR and its transformative impact on noise removal in images. 📸🔍 Join us as we delve into the intricacies of this revolutionary tool, exploring its applications in video production, content creation, medical imaging, remote sensing, surveillance, and beyond. From enhancing visual clarity to improving diagnostic accuracy, AdaIR is reshaping the way we perceive and interact with images in diverse fields. Get ready to witness the power of precision and clarity as we journey through the realms of image processing with AdaIR! 🌐🎙️

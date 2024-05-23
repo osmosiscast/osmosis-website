@@ -21,6 +21,8 @@ socialImage: "./media/photo.png"
 number: 6
 url: "https://www.buzzsprout.com/2312234/14911498-shedding-light-on-dark-energy-exploring-desi-s-latest-discoveries.mp3"
 size: 39436602
+season: 1
+duration: 3279
 ---
 
 In Episode 005 of OSMOSISCAST, [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) delve into the latest discoveries from DESI, shedding light on dark energy's mysteries. Join us as we explore cosmic spectra, galactic structures, and the universe's evolution, uncovering insights that redefine our understanding of the cosmos. Get ready for a journey through the stars that's as enlightening as it is fascinating! 🌌🎙️
