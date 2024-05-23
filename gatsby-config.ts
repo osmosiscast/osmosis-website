@@ -13,7 +13,7 @@ const feedOptions = {
   webMaster: config.author.name,
   copyright: config.copyright,
   language: "en-gb",
-  categories: ["Natural Sciences"],
+  categories: ["Science", "Natural Sciences"],
   ttl: "60",
   custom_namespaces: {
     itunes: "http://www.itunes.com/dtds/podcast-1.0.dtd",
@@ -29,10 +29,24 @@ const feedOptions = {
       ],
     },
     {
-      "itunes:image": "https://storage.buzzsprout.com/prpumpjmn4oq6tbwcfwyja0z1ed2?.jpg",
+      "itunes:image":
+        "https://storage.buzzsprout.com/prpumpjmn4oq6tbwcfwyja0z1ed2?.jpg",
     },
     {
-      "itunes:category": "Natural Sciences",
+      "itunes:category": [
+        {
+          _attr: {
+            text: "Science",
+          },
+        },
+        {
+          "itunes:category": {
+            _attr: {
+              text: "Natural Sciences",
+            },
+          },
+        },
+      ],
     },
   ],
 };
