@@ -7,21 +7,20 @@ const feedOptions = {
   description: config.subtitle,
   feed_url: "http://www.osmosiscast.com/rss.xml",
   site_url: config.url,
-  image_url: "/content/photo.png",
+  image_url: "https://storage.buzzsprout.com/prpumpjmn4oq6tbwcfwyja0z1ed2?.jpg",
   // docs: "http://example.com/rss/docs.html",
   managingEditor: config.author.name,
   webMaster: config.author.name,
   copyright: config.copyright,
-  language: "en",
+  language: "en-gb",
   categories: ["Natural Sciences"],
-  // pubDate: "May 20, 2019 04:00:00 GMT",
   ttl: "60",
   custom_namespaces: {
     itunes: "http://www.itunes.com/dtds/podcast-1.0.dtd",
   },
   custom_elements: [
     { "itunes:subtitle": config.subtitle },
-    { "itunes:author": config.author },
+    { "itunes:author": config.author.name },
     { "itunes:summary": config.author.bio },
     {
       "itunes:owner": [
@@ -30,7 +29,7 @@ const feedOptions = {
       ],
     },
     {
-      "itunes:image": "/content/photo.png",
+      "itunes:image": "https://storage.buzzsprout.com/prpumpjmn4oq6tbwcfwyja0z1ed2?.jpg",
     },
     {
       "itunes:category": "Natural Sciences",

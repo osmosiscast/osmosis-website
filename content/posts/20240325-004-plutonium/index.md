@@ -12,8 +12,8 @@ tags:
 description: "In episode 003 of OSMOSISCAST, Jamie McMillan and Calum Morris embark on a journey through the annals of atomic history as we delve into the mysteries of plutonium, fission, and the haunting legend of the Demon Core."
 socialImage: "./media/photo.png"
 number: 4
-url: "file.mp3"
-size: 0
+url: "https://www.buzzsprout.com/2312234/14757270-exploring-plutonium-fission-and-the-chilling-tale-of-the-demon-core.mp3"
+size: 32902973
 ---
 
 In episode 003 of OSMOSISCAST, [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) embark on a journey through the annals of atomic history as we delve into the mysteries of plutonium, fission, and the haunting legend of the Demon Core. ☢️📜 Join us as we explore the scientific breakthroughs and ethical dilemmas of the Atomic Age. From the transformative discoveries of nuclear science to the cautionary tales of criticality accidents, we shed light on the complex legacy that continues to shape our understanding of the atom.

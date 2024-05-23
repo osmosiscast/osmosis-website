@@ -12,8 +12,8 @@ tags:
 description: "Jamie McMillan and Calum Morris continue Osmosis as we turn back the clock to the era of analog innovation as we explore the fascinating world of Illumination for computer-generated pictures."
 socialImage: "./media/photo.png"
 number: 3
-url: "file.mp3"
-size: 0
+url: "https://www.buzzsprout.com/2312234/14660672-illuminating-the-past-unveiling-the-ancient-art-of-rendering-3d-objects.mp3"
+size: 29756050
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) continue Osmosis as we turn back the clock to the era of analog innovation as we explore the fascinating world of Illumination for computer-generated pictures. 💡🖥️ Join us on a journey through the early days of computer graphics, where CRT machines were the wizards behind rendering 3D objects.
