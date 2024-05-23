@@ -1,7 +1,6 @@
 import path from "path";
 
 import config from "./content/config.json";
-import * as types from "./internal/gatsby/types";
 
 const feedOptions = {
   title: config.title,

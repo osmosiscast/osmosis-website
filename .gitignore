@@ -13,6 +13,7 @@ pids
 .vscode
 *.swp
 *.out
+*.bak
 
 # build
 public
