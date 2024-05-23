@@ -67,7 +67,7 @@ export default {
       },
     },
     {
-      resolve: "gatsby-plugin-podcast-rss-feed",
+      resolve: "gatsby-plugin-podcast-feed",
       options: {
         feedOptions,
       },
