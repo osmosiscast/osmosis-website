@@ -21,6 +21,8 @@ socialImage: "./media/photo.png"
 number: 1
 url: "file.mp3"
 size: 0
+season: 1
+duration: 0
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) kick it off Osmosis with _The physics of baking good pizza_! 
