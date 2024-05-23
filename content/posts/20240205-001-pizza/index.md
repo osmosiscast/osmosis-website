@@ -6,7 +6,7 @@ draft: false
 slug: "/posts/pizza-alchemy"
 category: "Season 1"
 categories:
-  - "#OsmosisPodcast"
+  - "#OsmosisPodcastNOTREALLY@@@@"
   - "#ScientificSlice"
   - "#BestFriendsInScience"
   - "#PaperPerusal"
