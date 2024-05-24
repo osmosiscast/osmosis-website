@@ -25,4 +25,6 @@ Jamie is a physicist by training and has many years experience in temperature me
 
 Calum is a teacher with a background in Chemistry. His current interests are taking his dog for a walk.
 
+---
+
 ![Calum and Jamie](/media/calumAndJamie.jpg)
