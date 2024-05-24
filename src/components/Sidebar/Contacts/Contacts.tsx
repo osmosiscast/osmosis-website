@@ -1,7 +1,5 @@
 import React from "react";
 
-import { atob } from "abab";
-
 import { Icon } from "@/components/Icon";
 import { ICONS } from "@/constants";
 import { Dictionary } from "@/types";
