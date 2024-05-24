@@ -49,7 +49,7 @@ const Feed: React.FC<Props> = ({ edges }: Props) => (
           className={styles.more}
           to={edge.node.frontmatter?.slug || edge.node.fields.slug}
         >
-          Read
+          More
         </Link>
       </div>
     ))}

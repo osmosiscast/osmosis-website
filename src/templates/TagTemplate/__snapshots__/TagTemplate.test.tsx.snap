@@ -87,7 +87,7 @@ exports[`TagTemplate renders correctly 1`] = `
             <a
               href="/posts/perfecting-the-art-of-perfection"
             >
-              Read
+              More
             </a>
           </div>
           <div>
@@ -119,7 +119,7 @@ exports[`TagTemplate renders correctly 1`] = `
             <a
               href="/posts/johannes-gutenberg"
             >
-              Read
+              More
             </a>
           </div>
           <div>
@@ -149,7 +149,7 @@ exports[`TagTemplate renders correctly 1`] = `
             <a
               href="/posts/humane-typography-in-the-digital-age"
             >
-              Read
+              More
             </a>
           </div>
         </div>
