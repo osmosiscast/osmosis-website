@@ -1,7 +1,7 @@
 ---
 title: "About"
 template: "page"
-socialImage: "./calumAndJamie.jpg"
+socialImage: "./media/jamieZoo.jpg"
 ---
 
 During initial conceptualisation of the Osmosis podcast we were interested in enabling:
@@ -15,11 +15,13 @@ We landed on a format where we **take a scientific paper and break it down into 
 
 ---
 
+![Jamie x Zoolander](/media/jamieZoo.jpg)
+
 Jamie is a physicist by training and has many years experience in temperature measurement. He is currently working on the calibration of a thermal camera in space.
 
 ---
 
-Calum is a teacher with a background in Chemistry. His current interests are taking his dog for a walk.
+![Calum at the pub](/media/calumPub.jpg)
 
-![Jamie and Calum together](/calumAndJamie.jpg)
+Calum is a teacher with a background in Chemistry. His current interests are taking his dog for a walk.
 
