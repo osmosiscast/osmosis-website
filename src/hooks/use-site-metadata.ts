@@ -25,6 +25,8 @@ const useSiteMetadata = () => {
               telegram
               instagram
               soundcloud
+              spotify
+              applePodcast
               mastodon
               bluesky
             }
