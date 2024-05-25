@@ -7,7 +7,7 @@ const feedOptions = {
   description: config.subtitle,
   feed_url: "http://www.osmosiscast.com/rss.xml",
   site_url: config.url,
-  image_url: "https://storage.buzzsprout.com/prpumpjmn4oq6tbwcfwyja0z1ed2?.jpg",
+  image_url: config.author.photo,
   // docs: "http://example.com/rss/docs.html",
   managingEditor: config.author.name,
   webMaster: config.author.name,
@@ -29,8 +29,7 @@ const feedOptions = {
       ],
     },
     {
-      "itunes:image":
-        "https://storage.buzzsprout.com/prpumpjmn4oq6tbwcfwyja0z1ed2?.jpg",
+      "itunes:image": config.author.photo,
     },
     {
       "itunes:category": [
