@@ -1,7 +1,7 @@
 ---
 title: "Contact"
 template: "page"
-socialImage: "./book.jpg"
+socialImage: "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png"
 ---
 
 If you would like to get in touch, email [osmosiscast@gmail.com](mailto:osmosiscast@gmail.com) ☏.

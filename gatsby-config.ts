@@ -130,7 +130,7 @@ export default {
         short_name: config.title,
         theme_color: "hsl(31, 92%, 62%)",
         background_color: "hsl(0, 0%, 100%)",
-        icon: "content/photo.png",
+        icon: config.author.photo,
         display: "standalone",
         start_url: "/",
       },
