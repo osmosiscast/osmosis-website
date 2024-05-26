@@ -23,8 +23,7 @@
   ],
   "author": {
     "name": "Osmosis",
-    "photo": "/photo.png",
-    //"photo": "https://storage.buzzsprout.com/prpumpjmn4oq6tbwcfwyja0z1ed2?.jpg",
+    "photo": "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png",
     "bio": "A science focused podcast bringing together Jamie McMillan (aspiring scientist) and Calum Morris (really good teacher) to breakdown a scientific paper into deliciously digestible morsels.",
     "contacts": {
       "rss": "https://feeds.buzzsprout.com/2312234.rss",

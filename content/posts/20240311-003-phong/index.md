@@ -10,12 +10,12 @@ tags:
   - "Rendering"
   - "History"
 description: "Jamie McMillan and Calum Morris continue Osmosis as we turn back the clock to the era of analog innovation as we explore the fascinating world of Illumination for computer-generated pictures."
-socialImage: "./media/photo.png"
+socialImage: "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png"
 number: 3
-url: "https://www.buzzsprout.com/2312234/14660672-illuminating-the-past-unveiling-the-ancient-art-of-rendering-3d-objects.mp3"
-size: 29756050
+url: "https://assets.osmosiscast.com/content/episodes/003/phong.mp3"
+size: 39561268
 season: 1
-duration: 2472
+duration: 2473
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) continue Osmosis as we turn back the clock to the era of analog innovation as we explore the fascinating world of Illumination for computer-generated pictures. 💡🖥️ Join us on a journey through the early days of computer graphics, where CRT machines were the wizards behind rendering 3D objects.
