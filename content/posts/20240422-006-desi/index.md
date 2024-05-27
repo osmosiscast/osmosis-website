@@ -17,7 +17,7 @@ tags:
   - "#UniverseUnveiled"
   - "#CelestialDiscoveries"
 description: "In Episode 005 of OSMOSISCAST, Jamie McMillan and Calum Morris delve into the latest discoveries from DESI, shedding light on dark energy's mysteries."
-socialImage: "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png"
+socialImage: "./../content/osmosis-logo-square.png"
 number: 6
 url: "https://assets.osmosiscast.com/content/episodes/006/desi.mp3"
 size: 52465353

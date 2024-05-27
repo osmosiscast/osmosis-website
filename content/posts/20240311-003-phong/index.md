@@ -10,7 +10,7 @@ tags:
   - "Rendering"
   - "History"
 description: "Jamie McMillan and Calum Morris continue Osmosis as we turn back the clock to the era of analog innovation as we explore the fascinating world of Illumination for computer-generated pictures."
-socialImage: "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png"
+socialImage: "./../content/osmosis-logo-square.png"
 number: 3
 url: "https://assets.osmosiscast.com/content/episodes/003/phong.mp3"
 size: 39561268

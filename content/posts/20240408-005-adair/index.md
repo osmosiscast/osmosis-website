@@ -10,7 +10,7 @@ tags:
   - "Computer Processing"
   - "Machine Learning"
 description: "Jamie McMillan and Calum Morris continue Osmosis, we unveil the cutting-edge technology of AdaIR and its transformative impact on noise removal in images."
-socialImage: "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png"
+socialImage: "./../content/osmosis-logo-square.png"
 number: 5
 url: "https://assets.osmosiscast.com/content/episodes/005/adair.mp3"
 size: 54504840
