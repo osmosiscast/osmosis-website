@@ -10,7 +10,7 @@ tags:
   - "History"
   - "Nuclear"
 description: "In episode 003 of OSMOSISCAST, Jamie McMillan and Calum Morris embark on a journey through the annals of atomic history as we delve into the mysteries of plutonium, fission, and the haunting legend of the Demon Core."
-socialImage: "./../content/osmosis-logo-square.png"
+socialImage: "./../../osmosis-logo-square.png"
 number: 4
 url: "https://assets.osmosiscast.com/content/episodes/004/plutonium.mp3"
 size: 43757442
