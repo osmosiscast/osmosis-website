@@ -7,7 +7,8 @@ const feedOptions = {
   description: config.subtitle,
   feed_url: "http://www.osmosiscast.com/rss.xml",
   site_url: config.url,
-  image_url: config.author.photo,
+  image_url:
+    "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png",
   // docs: "http://example.com/rss/docs.html",
   managingEditor: config.author.name,
   webMaster: config.author.name,
@@ -29,7 +30,8 @@ const feedOptions = {
       ],
     },
     {
-      "itunes:image": config.author.photo,
+      "itunes:image":
+        "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png",
     },
     {
       "itunes:category": [
