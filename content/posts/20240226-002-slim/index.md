@@ -9,7 +9,7 @@ tags:
   - "Space"
   - "Engineering"
 description: "In Episode 001 of OSMOSISCAST, we embark on an interstellar journey as we dive into the recent news surrounding Japan's SLIM (Smart Lander for Investigating Moon) mission."
-socialImage: "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png"
+socialImage: "./../content/osmosis-logo-square.png"
 number: 2
 url: "https://assets.osmosiscast.com/content/episodes/002/slim.mp3"
 size: 32607773

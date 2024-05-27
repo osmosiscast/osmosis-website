@@ -1,7 +1,7 @@
 ---
 title: "About"
 template: "page"
-socialImage: "https://assets.osmosiscast.com/static-assets/calum-and-jamie.jpg"
+socialImage: "./../content/osmosis-logo-square.png"
 ---
 
 During initial conceptualisation of the Osmosis podcast we were interested in enabling:
