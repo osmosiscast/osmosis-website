@@ -17,7 +17,7 @@ tags:
   - "#IntellectualBanter"
   - "#OsmosisAdventures"
 description: "Welcome to Osmosis, the podcast where two best friends bring science to life! 🎙️ In each episode, we explore a different scientific paper, unraveling its complexities and making it accessible to everyone."
-socialImage: "./../content/osmosis-logo-square.png"
+socialImage: "./../../osmosis-logo-square.png"
 number: 1
 url: "https://assets.osmosiscast.com/content/episodes/001/pizza.mp3"
 size: 42825696

@@ -10,7 +10,7 @@ categories:
   - "Discussion"
   - "Future"
 description: "Jamie McMillan and Calum Morris wrap up the first season of Osmosis with an outlook on what is still to come. We reflect on the first season and highlight future plans."
-socialImage: "./../content/osmosis-logo-square.png"
+socialImage: "./../../osmosis-logo-square.png"
 number: 7
 url: "https://assets.osmosiscast.com/content/episodes/007/season-end.mp3"
 size: 13490217
