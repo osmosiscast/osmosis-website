@@ -84,6 +84,7 @@ export default {
             options: {
               maxWidth: 960,
               withWebp: true,
+              loading: "lazy",
             },
           },
           {
