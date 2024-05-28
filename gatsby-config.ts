@@ -5,7 +5,7 @@ import config from "./content/config.json";
 const feedOptions = {
   title: config.title,
   description: config.author.bio,
-  feed_url: "http://www.osmosiscast.com/rss.xml",
+  feed_url: config.author.contacts.rss,
   site_url: config.url,
   image_url:
     "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png",
