@@ -18,6 +18,7 @@ const feedOptions = {
   ttl: "60",
   custom_namespaces: {
     itunes: "http://www.itunes.com/dtds/podcast-1.0.dtd",
+    podcast: "https://podcastindex.org/namespace/1.0",
   },
   custom_elements: [
     { "itunes:subtitle": config.subtitle },
@@ -53,6 +54,8 @@ const feedOptions = {
       ],
     },
     { "itunes:explicit": "false" },
+    { "podcast:locked": "yes" },
+    { "podcast:guid": "a256ef66-55a0-54bc-aee8-1f9928bebd48" },
   ],
 };
 export default {
