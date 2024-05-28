@@ -17,7 +17,7 @@ const useCategoriesList = () => {
           frontmatter: { template: { eq: "post" }, draft: { ne: true } }
         }
       ) {
-        group(field: {frontmatter: {category: SELECT}}) {
+        group(field: { frontmatter: { category: SELECT } }) {
           fieldValue
           totalCount
         }

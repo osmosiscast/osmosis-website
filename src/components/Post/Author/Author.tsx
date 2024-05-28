@@ -1,8 +1,9 @@
 import React from "react";
 
-import Contacts from "./../../Sidebar/Contacts/Contacts";
 import { useSiteMetadata } from "@/hooks";
 import { getContactHref } from "@/utils";
+
+import Contacts from "./../../Sidebar/Contacts/Contacts";
 
 import * as styles from "./Author.module.scss";
 
