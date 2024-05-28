@@ -30,8 +30,11 @@ const feedOptions = {
       ],
     },
     {
-      "itunes:image":
-        "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png",
+      "itunes:image": {
+        _attr: {
+          href: "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png",
+        },
+      },
     },
     {
       "itunes:category": [
