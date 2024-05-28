@@ -52,6 +52,7 @@ const feedOptions = {
         },
       ],
     },
+    { "itunes:explicit": "false" },
   ],
 };
 export default {
