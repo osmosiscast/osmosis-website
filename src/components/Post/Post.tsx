@@ -8,6 +8,7 @@ import { Author } from "./Author";
 import { Comments } from "./Comments";
 import { Content } from "./Content";
 import { Meta } from "./Meta";
+import { Player } from "./Player";
 import { Tags } from "./Tags";
 
 import * as styles from "./Post.module.scss";
@@ -19,7 +20,7 @@ interface Props {
 const Post: React.FC<Props> = ({ post }: Props) => {
   const { html } = post;
   const { tagSlugs, slug } = post.fields;
-  const { tags, title, date } = post.frontmatter;
+  const { tags, title, date, url } = post.frontmatter;
 
   return (
     <div className={styles.post}>
@@ -30,6 +31,10 @@ const Post: React.FC<Props> = ({ post }: Props) => {
 
       <div className={styles.content}>
         <Content body={html} title={title} />
+      </div>
+
+      <div className={styles.player}>
+        <Player url={url} />
       </div>
 
       <div className={styles.footer}>

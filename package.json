@@ -77,7 +77,8 @@
     "gatsby-transformer-sharp": "^5.13.1",
     "prismjs": "^1.29.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-h5-audio-player": "^3.9.1"
   },
   "devDependencies": {
     "@alxshelepenok/eslint-config": "^1.0.458",
