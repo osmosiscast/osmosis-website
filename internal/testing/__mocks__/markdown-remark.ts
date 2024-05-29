@@ -13,6 +13,7 @@ export default {
     tags: ["Handwriting", "Helvetica"],
     title: "Perfecting the Art of Perfection",
     template: "post",
+    url: "/Users/jamiemcmillan/Documents/Osmosis/Documents/Episodes/000 Pizza/000_pizza.mp3",
   },
   html: "<p>An Essay on Typography by Eric Gill takes the reader back to the year 1930. The year when a conflict between two worlds came to its term. The machines of the industrial world finally took over the handicrafts.</p>",
 };
