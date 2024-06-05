@@ -1,0 +1,9 @@
+#!/bin/bash
+
+INPUT="$1"
+
+markdown-extract -n "Show Notes" "$INPUT" | \
+  sed 's/([^)]*)//g;s/\[//g;s/\]//g' | \
+  awk 'NR==1{print}' | \
+  grep -o '^[^.!?]*[.!/]'
+

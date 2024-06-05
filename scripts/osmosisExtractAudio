@@ -1,0 +1,10 @@
+#!/bin/bash
+
+inputFile="$1"
+
+totalAudioTrackCount=$(ffmpeg -i "${inputFile}" 2>&1 | awk '/Stream/&&/Audio/' | wc -l)
+
+for (( stream = 1; stream <= ${totalAudioTrackCount}; stream++ ))
+do
+	ffmpeg -i "${inputFile}" -map "0:${stream}" -ac 1 "${inputFile%.mkv}"_${stream}.mp3 &
+done
