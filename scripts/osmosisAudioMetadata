@@ -1,0 +1,157 @@
+#!/bin/bash
+#----------------------------------------------------------
+#	Osmosis Extract Audio Metadata
+#----------------------------------------------------------
+#	
+#	For the input audio file, return the size and duration
+#	
+#	Version 1.0
+#	JM	5th June 2024
+#	
+#----------------------------------------------------------
+#	Future features:
+#
+#		- 
+#		
+#----------------------------------------------------------
+#	Changelog:
+#
+#
+#----------------------------------------------------------
+
+shopt -s extglob
+#----------------------------------
+# Generate a unique job identifier
+#----------------------------------
+
+SCRIPT=$(basename ${BASH_SOURCE[0]})
+UNIQUE="0"
+job=$(printf "${SCRIPT}_${RANDOM}")
+while [ "$UNIQUE" -ne "1" ]
+do
+        if [[ ! -f /tmp/$job ]]
+        then
+                UNIQUE="1"
+        else
+                (>&2 echo "${SCRIPT} warning: creating new identifier")
+                job=$(printf "${SCRIPT}_${RANDOM}")
+        fi
+done
+
+
+#--------------------------
+# Check necessary installs
+#--------------------------
+
+# ffprobe
+if [ "$(which ffprobe)" == "" ]
+then
+	printf "${SCRIPT} error: ffprobe has not been installed\n"
+	exit 1
+fi
+
+#-------------
+# Input
+#-------------
+
+inputFilename="$1"
+
+
+#-------------
+# Duration
+#-------------
+
+returnDuration(){
+	fileDurationUnformatted=$(ffprobe -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${inputFilename}" 2>/dev/null)
+	fileDuration=$(printf "%.0f" $fileDurationUnformatted)
+	printf "$fileDuration\n"
+}
+
+
+#-------------
+# Size
+#-------------
+
+returnSize(){
+    fileSizeUnformatted=$(wc -c < "${inputFilename}")
+	fileSize=$(printf "%i" $fileSizeUnformatted)
+	printf "$fileSize\n"
+}
+
+
+
+
+#------------------------
+# Parse options and help
+#------------------------
+
+#Set fonts for help
+NORM=$(tput sgr0)
+BOLD=$(tput bold)
+REV=$(tput smso)
+
+#Help function
+function HELP {
+  echo -e \\n"Help documentation for ${BOLD}${SCRIPT}.${NORM}"\\n
+  echo -e "${REV}Basic usage:${NORM} ${BOLD}$SCRIPT ${NORM}"\\n
+  echo -e "Initialises the program and awaits command input."
+  echo ""
+  echo -e ""
+  echo -e ""\\n
+  echo -e "${REV}d${NORM}          --Return duration."
+  echo -e "${REV}s${NORM}          --Return size."
+  echo -e "${REV}h${NORM}          --Prints help.\\n"
+}
+
+#Parse command line flags
+#If an option should be followed by an argument, it should be followed by a ":".
+#Notice there is no ":" after "h". The leading ":" suppresses error messages from
+#getopts. This is required to get my unrecognized option code to work.
+
+while getopts :dsh FLAG; do
+  case $FLAG in
+	d)
+	  optionFlag="durationOnly"
+	  ;;
+	s)
+	  optionFlag="sizeOnly"
+	  ;;
+    h)  #show help
+      HELP
+      exit 1
+      ;;
+    \?) #unrecognized option - show help
+      printf "${SCRIPT} error: option -${BOLD}$OPTARG${NORM} not permitted\n"
+      HELP
+      exit 1
+      ;;
+  esac
+done
+
+#This tells getopts to move on to the next argument.
+shift $((OPTIND-1))
+
+# Redirect the first argument or stdin to $input
+[ $# -ge 1 -a -f "$1" ] && inputFilename="$@" || inputFilename="-"
+
+#------------------
+# main
+#------------------
+
+case $optionFlag in
+  sizeOnly)
+	returnSize
+	exit 0
+	;;
+  durationOnly)
+	returnDuration
+	exit 0
+	;;
+esac
+
+printf "File: ${inputFilename}\n\tsize: %s\n\tduration: %s\n" \
+  $(returnSize) \
+  $(returnDuration)
+
+exit 0
+

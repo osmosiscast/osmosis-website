@@ -1,0 +1,5 @@
+#!/bin/bash
+
+INPUT="$1"
+
+markdown-extract -n "Show Notes" "$INPUT"

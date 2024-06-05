@@ -1,0 +1,9 @@
+#!/bin/bash
+
+INPUT="$@"
+
+echo "$INPUT" | \
+  perl -CS -pe 's/(?[ \p{Emoji} - [\001 - \377] ])//g' | \
+  sed -E 's/[^[:alnum:]-]/ /g;s/[[:space:]]$//;s/[[:space:]]+/-/g' | \
+  tr '[:upper:]' '[:lower:]'
+
