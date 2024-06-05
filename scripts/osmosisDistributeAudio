@@ -35,7 +35,7 @@ class ShowNotes:
         metadata["season"] = int(metadata["season"])
         metadata["number"] = int(metadata["number"])
         metadata["slug"] = "/posts/" + subprocess.run(["osmosisKebabCase", metadata["title"]], capture_output=True, text=True).stdout.strip()
-        metadata["description"] = subprocess.run(["osmosisExtractescription", filename], capture_output=True, text=True).stdout.strip()
+        metadata["description"] = subprocess.run(["osmosisExtractDescription", filename], capture_output=True, text=True).stdout.strip()
         metadata["body"] = subprocess.run(["osmosisExtractBody", filename], capture_output=True, text=True).stdout.strip()
 
         return self(
