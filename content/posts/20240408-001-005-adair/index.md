@@ -12,7 +12,7 @@ tags:
 description: "Jamie McMillan and Calum Morris continue Osmosis, we unveil the cutting-edge technology of AdaIR and its transformative impact on noise removal in images."
 socialImage: "./../../osmosis-logo-square.png"
 number: 5
-url: "https://assets.osmosiscast.com/content/episodes/005/adair.mp3"
+url: "https://assets.osmosiscast.com/content/episodes/001/005/adair.mp3"
 size: 54504840
 season: 1
 duration: 3407

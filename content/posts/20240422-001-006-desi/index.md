@@ -19,7 +19,7 @@ tags:
 description: "In Episode 005 of OSMOSISCAST, Jamie McMillan and Calum Morris delve into the latest discoveries from DESI, shedding light on dark energy's mysteries."
 socialImage: "./../../osmosis-logo-square.png"
 number: 6
-url: "https://assets.osmosiscast.com/content/episodes/006/desi.mp3"
+url: "https://assets.osmosiscast.com/content/episodes/001/006/desi.mp3"
 size: 52465353
 season: 1
 duration: 3279
