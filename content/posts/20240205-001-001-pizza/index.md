@@ -19,7 +19,7 @@ tags:
 description: "Welcome to Osmosis, the podcast where two best friends bring science to life! 🎙️ In each episode, we explore a different scientific paper, unraveling its complexities and making it accessible to everyone."
 socialImage: "./../../osmosis-logo-square.png"
 number: 1
-url: "https://assets.osmosiscast.com/content/episodes/001/pizza.mp3"
+url: "https://assets.osmosiscast.com/content/episodes/001/001/pizza.mp3"
 size: 42825696
 season: 1
 duration: 2677
