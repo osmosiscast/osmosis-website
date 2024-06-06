@@ -1,0 +1,17 @@
+#!/bin/bash
+
+INPUT="$1"
+TITLE="$2"
+DATE="$3"
+
+ORIGINAL_FILE="${INPUT%.mp3}-original.mp3"
+mv "${INPUT}" "${ORIGINAL_FILE}"
+
+ffmpeg \
+    -y \
+	-i "${ORIGINAL_FILE}" \
+	-acodec mp3 \
+	-metadata title="${TITLE}" \
+	-metadata date="${DATE}" \
+	"${INPUT}" \
+	2>/dev/null
