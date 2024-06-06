@@ -32,6 +32,11 @@ class ShowNotes:
                 except yaml.YAMLError as exc:
                     print(exc)
 
+        # Static metadata values
+        metadata["template"] = "post"
+        metadata["draft"] = False
+        metadata["socialImage"] = "./../../osmosis-logo-square.png"
+
         metadata["season"] = int(metadata["season"])
         metadata["number"] = int(metadata["number"])
         metadata["slug"] = "/posts/" + subprocess.run(["osmosisKebabCase", metadata["title"]], capture_output=True, text=True).stdout.strip()
