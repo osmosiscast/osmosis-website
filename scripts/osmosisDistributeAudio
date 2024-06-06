@@ -51,8 +51,15 @@ class PrepareAudio:
     
     def __init__(self, source_filename: str) -> None:
         self.source_filename = source_filename
-        self.size = int(subprocess.run(["osmosisAudioMetadata", "-s", self.source_filename], capture_output=True, text=True).stdout.strip())
-        self.duration = int(subprocess.run(["osmosisAudioMetadata", "-d", self.source_filename], capture_output=True, text=True).stdout.strip())
+        self.size = int(subprocess.run(["osmosisRetrieveAudioMetadata", "-s", self.source_filename], capture_output=True, text=True).stdout.strip())
+        self.duration = int(subprocess.run(["osmosisRetrieveAudioMetadata", "-d", self.source_filename], capture_output=True, text=True).stdout.strip())
+        return None
+
+    def apply_audio_metadata(self, title: str, date: str) -> None:
+        exit_status = os.system(f"osmosisApplyAudioMetadata {self.source_filename} \"{title}\" \"{date}\" ")
+        if exit_status != 0:
+            raise ValueError(f"Unable to apply audio metadata to {self.source_filename}")
+
         return None
 
     def write_to_r2(self, season_number: int, episode_number: int) -> str:
@@ -167,6 +174,7 @@ def main() -> None:
 
     show_notes.metadata["size"] = audio.size
     show_notes.metadata["duration"] = audio.duration
+    audio.apply_audio_metadata(show_notes.metadata["title"], show_notes.metadata["date"])
 
     if arguments.output_directory is None:
         audio_filename = audio.write_to_r2(show_notes.metadata["season"], show_notes.metadata["number"])
