@@ -26,6 +26,16 @@ jobs:
           tag-prefix: 'v'
       - name: 'cat package.json'
         run: cat ./package.json
+      - name: 'Install poetry'
+        run: pipx install poetry
+      - name: 'cat pyproject.toml'
+        run: cat pyproject.toml
+      - name: 'bump poetry'
+        run: |
+          newVersion=$(sed -n 's/  "version": "\([0-9]\{1,\}\.[0-9]\{1,\}\.[0-9]\{1,\}\)",/\1/p' package.json)
+          poetry version ${newVersion}
+      - name: 'cat pyproject.toml'
+        run: cat pyproject.toml
       - name: 'Output Step'
         env:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
