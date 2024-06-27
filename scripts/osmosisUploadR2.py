@@ -13,6 +13,7 @@ bucket_name = "osmosis-assets-prod"
 key_name = "content/episodes/001/001/pizza.mp3"
 object_information = s3.head_object(Bucket=bucket_name, Key=key_name)
 print(object_information)
+print("text")
 
 # Upload/Update single file
 filename = "internal/testing/audio.mp3"
