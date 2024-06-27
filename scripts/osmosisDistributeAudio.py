@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import boto3
 import os
 import subprocess
 import shutil
@@ -25,7 +26,7 @@ class ShowNotes:
     def read_file(self, filename: str) -> ShowNotes:
         with tempfile.NamedTemporaryFile() as temporary_input_metadata:
             os.system(
-                f"sed '1d;/---/,$d' {filename} >| {temporary_input_metadata.name}"
+                f"sed '1d;/---/,$d' \"{filename}\" >| {temporary_input_metadata.name}"
             )
 
             with open(temporary_input_metadata.name) as stream:
@@ -39,8 +40,16 @@ class ShowNotes:
         metadata["draft"] = False
         metadata["socialImage"] = "./../../osmosis-logo-square.png"
 
+        required_metadata = ["category", "date", "number", "season", "tags", "title"]
+        for attribute in required_metadata:
+            if metadata[attribute] is None:
+                raise ValueError(
+                    f"{filename} does not describe a {attribute} attribute"
+                )
+
         metadata["season"] = int(metadata["season"])
         metadata["number"] = int(metadata["number"])
+
         metadata["slug"] = (
             "/posts/"
             + subprocess.run(
@@ -95,25 +104,27 @@ class PrepareAudio:
         return None
 
     def write_to_r2(self, season_number: int, episode_number: int) -> str:
-        bucket = "osmosis-assets-prod/content/episodes"
+        account_id = os.getenv("CLOUDFLARE_ACCOUNT_ID")
+        session = boto3.Session(profile_name="osmosis")
+        s3 = session.client(
+            service_name="s3",
+            endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
+        )
+
+        bucket_name = "osmosis-assets-prod"
         domain = "https://assets.osmosiscast.com/content/episodes"
         season_string = f"{season_number:03.0f}"
         episode_string = f"{episode_number:03.0f}"
         local_filepath = os.path.basename(self.source_filename)
-        upload_filepath = os.path.join(
-            bucket, season_string, episode_string, local_filepath
+        upload_key = os.path.join(
+            "content/episodes", season_string, episode_string, local_filepath
         )
         audio_url = os.path.join(domain, season_string, episode_string, local_filepath)
 
-        exit_status = os.system(
-            f'npx wrangler r2 object put --file {self.source_filename} "{upload_filepath}"'
-        )
-        if exit_status == 0:
-            return audio_url
-        else:
-            raise ValueError(
-                f"{upload_filepath} failed to upload to R2 with this exit code {exit_status}"
-            )
+        with open(self.source_filename, "rb") as file:
+            s3.upload_fileobj(file, bucket_name, upload_key)
+
+        return audio_url
 
 
 class PrepareEpisodePage:
@@ -135,7 +146,7 @@ class PrepareEpisodePage:
         self.audio_filename = audio_filename
 
         if output_directory is None:
-            date = self.show_notes.metadata["date"].replace("-", "")
+            date = str(self.show_notes.metadata["date"]).replace("-", "")
             season = f"{self.show_notes.metadata['season']:03.0f}"
             episode = f"{self.show_notes.metadata['number']:03.0f}"
             title = subprocess.run(
