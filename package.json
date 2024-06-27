@@ -46,6 +46,11 @@
     ],
     "*.(sc|sa|c)ss": [
       "npm run format:scss"
+    ],
+    "*.py?": [
+      "poetry run ruff format",
+      "poetry run bandit .",
+      "poetry run mypy ."
     ]
   },
   "dependencies": {
