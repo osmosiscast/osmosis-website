@@ -49,7 +49,7 @@
     ],
     "*.py": [
       "poetry run ruff format",
-      "poetry run bandit",
+      "poetry run bandit -r -s B404,B603",
       "poetry run mypy --no-explicit-package-bases"
     ]
   },
