@@ -10,6 +10,7 @@ import shutil
 import tempfile
 import yaml
 
+from abc import ABC
 from dataclasses import dataclass
 from typing import Optional
 
@@ -66,7 +67,36 @@ class ShowNotes:
         return self(metadata=metadata)
 
 
-class PrepareAudio:
+class PrepareSource(ABC):
+    def __init__(self, source_filename: str) -> None:
+        self.source_filename = source_filename
+        return None
+
+    def write_to_r2(self, season_number: int, episode_number: int) -> str:
+        account_id = os.getenv("CLOUDFLARE_ACCOUNT_ID")
+        session = boto3.Session(profile_name="osmosis")
+        s3 = session.client(
+            service_name="s3",
+            endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
+        )
+
+        bucket_name = "osmosis-assets-prod"
+        domain = "https://assets.osmosiscast.com/content/episodes"
+        season_string = f"{season_number:03.0f}"
+        episode_string = f"{episode_number:03.0f}"
+        local_filepath = os.path.basename(self.source_filename)
+        upload_key = os.path.join(
+            "content/episodes", season_string, episode_string, local_filepath
+        )
+        asset_url = os.path.join(domain, season_string, episode_string, local_filepath)
+
+        with open(self.source_filename, "rb") as file:
+            s3.upload_fileobj(file, bucket_name, upload_key)
+
+        return asset_url
+
+
+class PrepareAudio(PrepareSource):
     """
     Apply validation to audio file and ship to storage
     """
@@ -75,7 +105,7 @@ class PrepareAudio:
     duration: int
 
     def __init__(self, source_filename: str) -> None:
-        self.source_filename = source_filename
+        super().__init__(source_filename)
         self.size = int(
             subprocess.run(
                 ["osmosisRetrieveAudioMetadata", "-s", self.source_filename],
@@ -103,28 +133,13 @@ class PrepareAudio:
 
         return None
 
-    def write_to_r2(self, season_number: int, episode_number: int) -> str:
-        account_id = os.getenv("CLOUDFLARE_ACCOUNT_ID")
-        session = boto3.Session(profile_name="osmosis")
-        s3 = session.client(
-            service_name="s3",
-            endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
-        )
 
-        bucket_name = "osmosis-assets-prod"
-        domain = "https://assets.osmosiscast.com/content/episodes"
-        season_string = f"{season_number:03.0f}"
-        episode_string = f"{episode_number:03.0f}"
-        local_filepath = os.path.basename(self.source_filename)
-        upload_key = os.path.join(
-            "content/episodes", season_string, episode_string, local_filepath
-        )
-        audio_url = os.path.join(domain, season_string, episode_string, local_filepath)
+class PrepareVideo(PrepareSource):
+    """
+    Apply validation to video file and ship to storage
+    """
 
-        with open(self.source_filename, "rb") as file:
-            s3.upload_fileobj(file, bucket_name, upload_key)
-
-        return audio_url
+    pass
 
 
 class PrepareEpisodePage:
@@ -134,16 +149,19 @@ class PrepareEpisodePage:
 
     show_notes: ShowNotes
     audio_filename: str
+    video_filename: str
     output_directory: str
 
     def __init__(
         self,
         show_notes: ShowNotes,
         audio_filename: str,
+        video_filename: str,
         output_directory: Optional[str],
     ) -> None:
         self.show_notes = show_notes
         self.audio_filename = audio_filename
+        self.video_filename = video_filename
 
         if output_directory is None:
             date = str(self.show_notes.metadata["date"]).replace("-", "")
@@ -200,7 +218,7 @@ class PrepareEpisodePage:
 
 def argument_parser() -> argparse.ArgumentParser:
     """
-    osmosisDistributionAudio --source-audio {file} --source-markdown {file} [--output-directory {directory}]
+    osmosisDistributionAudio --source-audio {file} --source-video {file} --source-markdown {file} [--output-directory {directory}]
     """
 
     parser = argparse.ArgumentParser("Osmosis Audio Distribution")
@@ -210,6 +228,13 @@ def argument_parser() -> argparse.ArgumentParser:
         type=os.path.abspath,  # type: ignore
         required=True,
         help="Audio file prepared for distribution.",
+    )
+    parser.add_argument(
+        "--source-video",
+        "-s",
+        type=os.path.abspath,  # type: ignore
+        required=True,
+        help="Video file prepared for distribution.",
     )
     parser.add_argument(
         "--source-markdown",
@@ -235,6 +260,8 @@ def main() -> None:
 
     audio = PrepareAudio(source_filename=arguments.source_audio)
     audio_filename = audio.source_filename
+    video = PrepareVideo(source_filename=arguments.source_video)
+    video_filename = video.source_filename
 
     show_notes.metadata["size"] = audio.size
     show_notes.metadata["duration"] = audio.duration
@@ -246,13 +273,18 @@ def main() -> None:
         audio_filename = audio.write_to_r2(
             show_notes.metadata["season"], show_notes.metadata["number"]
         )
+        video_filename = video.write_to_r2(  # To be replaced by the YouTube URL
+            show_notes.metadata["season"], show_notes.metadata["number"]
+        )
     if arguments.output_directory is not None:
         audio_filename = arguments.source_audio
+        video_filename = arguments.source_video
 
     show_notes.metadata["url"] = audio_filename
     episode_page = PrepareEpisodePage(
         show_notes=show_notes,
         audio_filename=audio_filename,
+        video_filename=video_filename,
         output_directory=arguments.output_directory,
     )
     destination = episode_page.write_markdown()
