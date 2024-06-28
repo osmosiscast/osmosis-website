@@ -22,7 +22,7 @@ def main() -> None:
     video = PrepareVideo(source_filename=arguments.source_video)
     video_filename = video.source_filename
     season = 1
-    number = 4
+    number = 1
 
     video_filename = video.write_to_r2(season, number)
 
