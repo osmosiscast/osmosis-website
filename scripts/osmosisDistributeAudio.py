@@ -124,7 +124,7 @@ class PrepareAudio(PrepareSource):
 
     def apply_audio_metadata(self, title: str, date: str) -> None:
         exit_status = os.system(
-            f'osmosisApplyAudioMetadata {self.source_filename} "{title}" "{date}" '
+            f'osmosisApplyAudioMetadata "{self.source_filename}" "{title}" "{date}" '
         )
         if exit_status != 0:
             raise ValueError(
