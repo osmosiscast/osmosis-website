@@ -64,6 +64,8 @@ class ShowNotes:
             ["osmosisExtractBody", filename], capture_output=True, text=True
         ).stdout.strip()
 
+        metadata["tags"] = list(set(metadata["tags"]))  # Remove duplicates
+
         return self(metadata=metadata)
 
 
