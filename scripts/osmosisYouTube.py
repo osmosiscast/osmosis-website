@@ -109,7 +109,7 @@ class YouTubeUpload:
             http=credentials.authorize(httplib2.Http()),
         )
 
-    def initialize_upload(self, youtube):
+    def initialise_upload(self, youtube) -> dict:
         body = dict(
             snippet=dict(
                 title=self.title,
@@ -128,6 +128,8 @@ class YouTubeUpload:
         )
 
         self.resumable_upload(insert_request)
+
+        return insert_request
 
     def resumable_upload(self, insert_request):
         """
@@ -175,7 +177,8 @@ class YouTubeUpload:
     def upload_video(self) -> dict:
         youtube = self.get_authenticated_service()
         try:
-            self.initialize_upload(youtube)
+            response = self.initialise_upload(youtube)
         except HttpError as e:
             print("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
-        return {}
+            response = {}
+        return response
