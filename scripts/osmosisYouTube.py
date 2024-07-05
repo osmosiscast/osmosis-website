@@ -2,7 +2,6 @@ import http.client as httplib
 import httplib2
 import os
 import random
-import sys
 import time
 
 from apiclient.discovery import build
@@ -10,7 +9,7 @@ from apiclient.errors import HttpError
 from apiclient.http import MediaFileUpload
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
-from oauth2client.tools import run_flow
+from oauth2client.tools import run_flow, argparser
 
 
 class YouTubeUpload:
@@ -101,7 +100,8 @@ class YouTubeUpload:
         credentials = storage.get()
 
         if credentials is None or credentials.invalid:
-            credentials = run_flow(flow, storage)
+            args = argparser.parse_args(args=[])
+            credentials = run_flow(flow, storage, args)
 
         return build(
             self.YOUTUBE_API_SERVICE_NAME,

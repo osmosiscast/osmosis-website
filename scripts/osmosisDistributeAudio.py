@@ -147,14 +147,22 @@ class PrepareVideo(PrepareSource):
         title: str,
         description: str,
         keywords: list[str],
+        episode_number: int,
+        season_number: int,
     ) -> dict:
         """
         Upload the video to the Osmosiscast YouTube channel
         """
+
+        youtube_title_slug = f"OSMOSISCAST {episode_number}.{season_number} - "
+        formatted_title = f"{youtube_title_slug}{title}"
+
+        formatted_description = description.replace("[", "").replace("](", " (")
+
         youtube = YouTubeUpload(
             file=self.source_filename,
-            title=title,
-            description=description,
+            title=formatted_title,
+            description=formatted_description,
             category="28",
             keywords=keywords,
             privacy_status="private",
@@ -302,8 +310,10 @@ def main() -> None:
             title=show_notes.metadata["title"],
             description=show_notes.metadata["body"],
             keywords=show_notes.metadata["tags"],
+            episode_number=show_notes.metadata["number"],
+            season_number=show_notes.metadata["season"],
         )
-        print(youtube_output)
+        print(youtube_output.__dict__)
     if arguments.output_directory is not None:
         audio_filename = arguments.source_audio
         video_filename = arguments.source_video
