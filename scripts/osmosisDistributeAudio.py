@@ -13,6 +13,7 @@ import yaml
 from abc import ABC
 from dataclasses import dataclass
 from typing import Optional
+from osmosisYouTube import YouTubeUpload
 
 
 @dataclass
@@ -141,7 +142,26 @@ class PrepareVideo(PrepareSource):
     Apply validation to video file and ship to storage
     """
 
-    pass
+    def upload_to_youtube(
+        self,
+        title: str,
+        description: str,
+        keywords: list[str],
+    ) -> str:
+        """
+        Upload the video to the Osmosiscast YouTube channel
+        """
+        youtube = YouTubeUpload(
+            file=self.source_filename,
+            title=title,
+            description=description,
+            category="28",
+            keywords=keywords,
+            privacy_status="private",
+        )
+        response = youtube.upload_video()
+
+        return response["url"]
 
 
 class PrepareEpisodePage:
@@ -277,6 +297,11 @@ def main() -> None:
         )
         video_filename = video.write_to_r2(  # To be replaced by the YouTube URL
             show_notes.metadata["season"], show_notes.metadata["number"]
+        )
+        video_filename = video.upload_to_youtube(
+            title=show_notes.metadata["title"],
+            description=show_notes.metadata["body"],
+            keywords=show_notes.metadata["tags"],
         )
     if arguments.output_directory is not None:
         audio_filename = arguments.source_audio
