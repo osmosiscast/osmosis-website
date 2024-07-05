@@ -97,7 +97,7 @@ class YouTubeUpload:
             message=self.MISSING_CLIENT_SECRETS_MESSAGE,
         )
 
-        storage = Storage("%s-oauth2.json" % sys.argv[0])
+        storage = Storage("%s-storage-oauth2.json" % self.CLIENT_SECRETS_FILEPATH)
         credentials = storage.get()
 
         if credentials is None or credentials.invalid:
