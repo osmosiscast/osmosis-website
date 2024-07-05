@@ -147,7 +147,7 @@ class PrepareVideo(PrepareSource):
         title: str,
         description: str,
         keywords: list[str],
-    ) -> str:
+    ) -> dict:
         """
         Upload the video to the Osmosiscast YouTube channel
         """
@@ -161,7 +161,7 @@ class PrepareVideo(PrepareSource):
         )
         response = youtube.upload_video()
 
-        return response["url"]
+        return response
 
 
 class PrepareEpisodePage:
@@ -298,11 +298,12 @@ def main() -> None:
         video_filename = video.write_to_r2(  # To be replaced by the YouTube URL
             show_notes.metadata["season"], show_notes.metadata["number"]
         )
-        video_filename = video.upload_to_youtube(
+        youtube_output = video.upload_to_youtube(
             title=show_notes.metadata["title"],
             description=show_notes.metadata["body"],
             keywords=show_notes.metadata["tags"],
         )
+        print(youtube_output)
     if arguments.output_directory is not None:
         audio_filename = arguments.source_audio
         video_filename = arguments.source_video
