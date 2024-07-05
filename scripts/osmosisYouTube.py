@@ -10,10 +10,10 @@ from apiclient.errors import HttpError
 from apiclient.http import MediaFileUpload
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
-from oauth2client.tools import argparser, run_flow
+from oauth2client.tools import run_flow
+
 
 class YouTubeUpload:
-
     def __init__(
         self,
         file: str,
@@ -59,7 +59,9 @@ class YouTubeUpload:
         # client_secret.
         CLIENT_SECRETS_DIRECTORY = os.path.expanduser("~")
         CLIENT_SECRETS_FILE = ".client_secrets.json"
-        self.CLIENT_SECRETS_FILEPATH = os.path.join(CLIENT_SECRETS_DIRECTORY, CLIENT_SECRETS_FILE)
+        self.CLIENT_SECRETS_FILEPATH = os.path.join(
+            CLIENT_SECRETS_DIRECTORY, CLIENT_SECRETS_FILE
+        )
 
         # This OAuth 2.0 access scope allows an application to upload files to the
         # authenticated user's YouTube channel, but doesn't allow other types of access.
@@ -82,11 +84,13 @@ class YouTubeUpload:
 
         For more information about the client_secrets.json file format, please visit:
         https://developers.google.com/api-client-library/python/guide/aaa_client_secrets
-        """ % os.path.abspath(os.path.join(os.path.dirname(__file__), self.CLIENT_SECRETS_FILEPATH))
+        """ % os.path.abspath(
+            os.path.join(os.path.dirname(__file__), self.CLIENT_SECRETS_FILEPATH)
+        )
 
         return None
 
-    def get_authenticated_service(self, args):
+    def get_authenticated_service(self):
         flow = flow_from_clientsecrets(
             self.CLIENT_SECRETS_FILEPATH,
             scope=self.YOUTUBE_UPLOAD_SCOPE,
@@ -97,7 +101,7 @@ class YouTubeUpload:
         credentials = storage.get()
 
         if credentials is None or credentials.invalid:
-            credentials = run_flow(flow, storage, args)
+            credentials = run_flow(flow, storage)
 
         return build(
             self.YOUTUBE_API_SERVICE_NAME,
@@ -105,35 +109,30 @@ class YouTubeUpload:
             http=credentials.authorize(httplib2.Http()),
         )
 
-
-    def initialize_upload(self, youtube, options):
-        tags = None
-        if options.keywords:
-            tags = options.keywords.split(",")
-
+    def initialize_upload(self, youtube):
         body = dict(
             snippet=dict(
-                title=options.title,
-                description=options.description,
-                tags=tags,
-                categoryId=options.category,
+                title=self.title,
+                description=self.description,
+                tags=self.keywords,
+                categoryId=self.category,
             ),
-            status=dict(privacyStatus=options.privacyStatus),
+            status=dict(privacyStatus=self.privacy_status),
         )
 
         # Call the API's videos.insert method to create and upload the video.
         insert_request = youtube.videos().insert(
             part=",".join(body.keys()),
             body=body,
-            media_body=MediaFileUpload(options.file, chunksize=-1, resumable=True),
+            media_body=MediaFileUpload(self.file, chunksize=-1, resumable=True),
         )
 
         self.resumable_upload(insert_request)
 
-
-    # This method implements an exponential backoff strategy to resume a
-    # failed upload.
     def resumable_upload(self, insert_request):
+        """
+        This method implements an exponential backoff strategy to resume a failed upload
+        """
         response = None
         error = None
         retry = 0
@@ -143,9 +142,14 @@ class YouTubeUpload:
                 status, response = insert_request.next_chunk()
                 if response is not None:
                     if "id" in response:
-                        print("Video id '%s' was successfully uploaded." % response["id"])
+                        print(
+                            "Video id '%s' was successfully uploaded." % response["id"]
+                        )
                     else:
-                        exit("The upload failed with an unexpected response: %s" % response)
+                        exit(
+                            "The upload failed with an unexpected response: %s"
+                            % response
+                        )
             except HttpError as e:
                 if e.resp.status in self.RETRIABLE_STATUS_CODES:
                     error = "A retriable HTTP error %d occurred:\n%s" % (
