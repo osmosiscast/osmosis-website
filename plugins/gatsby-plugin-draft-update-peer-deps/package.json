@@ -1,0 +1,45 @@
+{
+  "name": "gatsby-plugin-draft",
+  "version": "0.2.0",
+  "description": "Gatsby plugin for adding draft field",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shooontan/gatsby-plugin-draft.git"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.5.33"
+  },
+  "devDependencies": {
+    "@shooontan/eslint-config": "^0.0.2",
+    "eslint": "^7.30.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "glob": "^7.1.7",
+    "gray-matter": "^4.0.3",
+    "jest": "^27.0.1",
+    "mockdate": "^3.0.5",
+    "prettier": "^2.3.2"
+  },
+  "peerDependencies": {
+    "gatsby": "3 - 5"
+  },
+  "scripts": {
+    "lint": "eslint './**/*.js'",
+    "lint:fix": "prettier --write './**/*.js' && yarn lint --fix",
+    "test": "jest --coverage"
+  },
+  "files": [
+    "index.js",
+    "gatsby-node.js",
+    "utils.js"
+  ],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "draft",
+    "released",
+    "published"
+  ],
+  "packageManager": "yarn@3.6.0"
+}
