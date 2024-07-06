@@ -29,7 +29,12 @@ const jestConfig: Config.InitialOptions = {
   transform: { "^.+\\.[jt]sx?$": ["@swc/jest", swc] },
   setupFiles: ["<rootDir>/internal/testing/jest-setup.ts"],
   setupFilesAfterEnv: ["<rootDir>/internal/testing/jest-after-env.ts"],
-  testPathIgnorePatterns: ["node_modules", "\\.cache", "<rootDir>.*/public"],
+  testPathIgnorePatterns: [
+    "node_modules",
+    "\\.cache",
+    "<rootDir>.*/public",
+    "plugins",
+  ],
   transformIgnorePatterns: ["node_modules/(?!(gatsby|gatsby-script)/)"],
 };
 
