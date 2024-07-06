@@ -306,14 +306,13 @@ def main() -> None:
         video_filename = video.write_to_r2(  # To be replaced by the YouTube URL
             show_notes.metadata["season"], show_notes.metadata["number"]
         )
-        youtube_output = video.upload_to_youtube(
+        video.upload_to_youtube(
             title=show_notes.metadata["title"],
             description=show_notes.metadata["body"],
             keywords=show_notes.metadata["tags"],
             episode_number=show_notes.metadata["number"],
             season_number=show_notes.metadata["season"],
         )
-        print(youtube_output.__dict__)
     if arguments.output_directory is not None:
         audio_filename = arguments.source_audio
         video_filename = arguments.source_video
