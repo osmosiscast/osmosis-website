@@ -154,7 +154,7 @@ class PrepareVideo(PrepareSource):
         Upload the video to the Osmosiscast YouTube channel
         """
 
-        youtube_title_slug = f"OSMOSISCAST {episode_number}.{season_number} - "
+        youtube_title_slug = f"OSMOSISCAST {season_number}.{episode_number} - "
         formatted_title = f"{youtube_title_slug}{title}"
 
         formatted_description = description.replace("[", "").replace("](", " (")
