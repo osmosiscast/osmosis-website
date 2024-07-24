@@ -7,6 +7,7 @@ import time
 from apiclient.discovery import build
 from apiclient.errors import HttpError
 from apiclient.http import MediaFileUpload
+from datetime import datetime
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.file import Storage
 from oauth2client.tools import run_flow, argparser
@@ -98,8 +99,9 @@ class YouTubeUpload:
 
         storage = Storage("%s-storage-oauth2.json" % self.CLIENT_SECRETS_FILEPATH)
         credentials = storage.get()
+        token_expired = credentials.token_expiry < datetime.now()
 
-        if credentials is None or credentials.invalid:
+        if credentials is None or credentials.invalid or token_expired:
             args = argparser.parse_args(args=[])
             credentials = run_flow(flow, storage, args)
 
