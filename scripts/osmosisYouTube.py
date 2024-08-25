@@ -129,11 +129,11 @@ class YouTubeUpload:
             media_body=MediaFileUpload(self.file, chunksize=-1, resumable=True),
         )
 
-        self.resumable_upload(insert_request)
+        response = self.resumable_upload(insert_request)
 
-        return insert_request
+        return response
 
-    def resumable_upload(self, insert_request):
+    def resumable_upload(self, insert_request) -> dict:
         """
         This method implements an exponential backoff strategy to resume a failed upload
         """
@@ -175,6 +175,8 @@ class YouTubeUpload:
                 sleep_seconds = random.random() * max_sleep  # nosec
                 print("Sleeping %f seconds and then retrying..." % sleep_seconds)
                 time.sleep(sleep_seconds)
+
+        return response
 
     def upload_video(self) -> dict:
         youtube = self.get_authenticated_service()
