@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "osmosis-website"
-version = "1.9.0"
+version = "1.9.1"
 description = "Home of the Osmosis podcast"
 authors = ["Jamie McMillan <jamie.mcmillan@satellitevu.com>"]
 license = "MIT"
