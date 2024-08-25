@@ -12,8 +12,14 @@ import yaml
 
 from abc import ABC
 from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Optional
 from osmosisYouTube import YouTubeUpload
+from osmosisDiscord import discord_episode_release
+
+osmosis_domain = "https://osmosiscast.com"
+youtube_domain = "https://www.youtube.com/watch?v="
 
 
 @dataclass
@@ -22,6 +28,7 @@ class ShowNotes:
     With a show notes file, return all attributes needed to build website page
     """
 
+    filename: str
     metadata: dict
 
     @classmethod
@@ -67,7 +74,7 @@ class ShowNotes:
 
         metadata["tags"] = list(set(metadata["tags"]))  # Remove duplicates
 
-        return self(metadata=metadata)
+        return self(filename=filename, metadata=metadata)
 
 
 class PrepareSource(ABC):
@@ -180,6 +187,7 @@ class PrepareEpisodePage:
     show_notes: ShowNotes
     audio_filename: str
     video_filename: str
+    youtube_url: str
     output_directory: str
 
     def __init__(
@@ -245,6 +253,26 @@ class PrepareEpisodePage:
 
         return destination
 
+    def write_release_payload(self) -> str:
+        website_url = osmosis_domain + str(self.show_notes.metadata.get("slug"))
+        output_filename = Path(self.show_notes.filename).with_suffix(".json")
+        release_date = datetime.strptime(
+            str(self.show_notes.metadata.get("date")), "%Y-%m-%d"
+        ).replace(tzinfo=timezone.utc)
+
+        discord_episode_release(
+            title=str(self.show_notes.metadata.get("title")),
+            description=str(self.show_notes.metadata.get("description")),
+            release_date=release_date,
+            youtube_url=self.youtube_url,
+            website_url=website_url,
+            audio_url=self.audio_filename,
+            video_url=self.video_filename,
+            output_filename=output_filename.as_posix(),
+        )
+
+        return output_filename.as_posix()
+
 
 def argument_parser() -> argparse.ArgumentParser:
     """
@@ -306,7 +334,7 @@ def main() -> None:
         video_filename = video.write_to_r2(  # To be replaced by the YouTube URL
             show_notes.metadata["season"], show_notes.metadata["number"]
         )
-        video.upload_to_youtube(
+        youtube_response = video.upload_to_youtube(
             title=show_notes.metadata["title"],
             description=show_notes.metadata["body"],
             keywords=show_notes.metadata["tags"],
@@ -316,6 +344,7 @@ def main() -> None:
     if arguments.output_directory is not None:
         audio_filename = arguments.source_audio
         video_filename = arguments.source_video
+        youtube_response = {}
 
     show_notes.metadata["url"] = audio_filename
     episode_page = PrepareEpisodePage(
@@ -326,7 +355,12 @@ def main() -> None:
     )
     destination = episode_page.write_markdown()
 
-    print(f"Episode prepared at\n{destination}")
+    episode_page.youtube_url = youtube_domain + str(youtube_response.get("id"))
+    json_filepath = episode_page.write_release_payload()
+
+    print(
+        f"Episode prepared at\n{destination}\nRelease payload written to\n{json_filepath}"
+    )
 
     return None
 
