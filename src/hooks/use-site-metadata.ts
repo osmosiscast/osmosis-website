@@ -29,6 +29,7 @@ const useSiteMetadata = () => {
               applePodcast
               mastodon
               bluesky
+              discord
             }
           }
           menu {
