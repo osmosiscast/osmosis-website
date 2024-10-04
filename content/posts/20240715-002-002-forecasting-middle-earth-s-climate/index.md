@@ -12,16 +12,16 @@ slug: /posts/forecasting-middle-earth-s-climate
 socialImage: ./../../osmosis-logo-square.png
 tags:
 - Literary
-- Middle Earth
+- MiddleEarth
 - Climate
 - Worlds
-- World Geography
+- WorldGeography
 - Research
 - Meteorology
 - Analysis
-- Modelling Science
+- ModellingScience
 - Sciences
-- Fictional Studies
+- FictionalStudies
 - Environmental
 - Fantasy
 template: post

@@ -10,17 +10,17 @@ size: 63448092
 slug: /posts/we-re-back-and-talking-about-thermal-rulers
 socialImage: ./../../osmosis-logo-square.png
 tags:
-- radioactivity
-- temperature
-- thermometry
-- thermalimaging
-- wastemanagement
-- nuclearwaste
-- osmosiscast
-- safetyinscience
-- thermaltech
-- environmentalsafety
-- environment
+- Radioactivity
+- Temperature
+- Thermometry
+- ThermalImaging
+- WasteManagement
+- NuclearWaste
+- OSMOSISCAST
+- SafetyInScience
+- ThermalTech
+- EnvironmentalSafety
+- Environment
 template: post
 title: We're back and talking about thermal rulers
 url: https://assets.osmosiscast.com/content/episodes/002/001/radioactive-thermometry.mp3
