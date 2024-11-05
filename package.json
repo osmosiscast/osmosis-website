@@ -65,7 +65,6 @@
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-offline": "^6.13.2",
-    "gatsby-plugin-optimize-svgs": "^1.0.5",
     "gatsby-plugin-podcast-feed": "github:osmosiscast/gatsby-plugin-podcast-feed",
     "gatsby-plugin-sass": "^6.13.1",
     "gatsby-plugin-sharp": "^5.13.1",
