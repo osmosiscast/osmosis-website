@@ -60,7 +60,7 @@
     "@sentry/tracing": "^7.112.2",
     "classnames": "^2.5.1",
     "disqus-react": "^1.1.5",
-    "gatsby": "^5.13.5",
+    "gatsby": "^5.14.1",
     "gatsby-plugin-catch-links": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
