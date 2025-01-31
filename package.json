@@ -27,7 +27,7 @@
     "lint:scss": "stylelint \"src/**/*.scss\"",
     "lint:staged": "lint-staged",
     "lint:ts": "eslint \"src\" --ext .tsx,.ts && prettier --check .",
-    "prepare": "npx husky install",
+    "prepare": "npx husky",
     "semantic-release": "semantic-release",
     "serve": "npx gatsby serve",
     "start": "npm run clean && gatsby develop",
