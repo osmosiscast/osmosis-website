@@ -1,4 +1,4 @@
 @charset "UTF-8";
 
-@import "base/generic";
-@import "base/prism";
+@forward "base/generic";
+@forward "base/prism";
