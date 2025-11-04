@@ -56,7 +56,6 @@
   "dependencies": {
     "@alxshelepenok/diesel": "^1.0.1293",
     "@alxshelepenok/diesel-extensions": "^1.0.1223",
-    "@sentry/gatsby": "^8.33.1",
     "classnames": "^2.5.1",
     "disqus-react": "^1.1.5",
     "gatsby": "^5.14.1",
