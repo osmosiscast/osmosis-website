@@ -1,0 +1,23 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.post-tags {
+  @include margin-bottom(0.5);
+
+  .list {
+    list-style: none;
+    @include padding-equal(0);
+
+    .item {
+      display: inline-block;
+      @include margin(0.25, 0);
+
+      @include breakpoint-sm {
+        &:first-child {
+          @include margin-left(0);
+          @include padding-left(0);
+        }
+      }
+    }
+  }
+}

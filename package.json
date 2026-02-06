@@ -54,6 +54,8 @@
     ]
   },
   "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.0",
     "@alxshelepenok/diesel": "^1.0.1293",
     "@alxshelepenok/diesel-extensions": "^1.0.1223",
     "classnames": "^2.5.1",

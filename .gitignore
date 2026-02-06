@@ -17,6 +17,7 @@ pids
 
 # build
 public
+_site
 
 # cache
 .cache
