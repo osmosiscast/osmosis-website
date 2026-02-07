@@ -1,0 +1,23 @@
+---
+layout: base.njk
+pagination:
+  data: collections.categoryPages
+  size: 1
+  alias: categoryPage
+permalink: "/category/{{ categoryPage.slug }}/{% if categoryPage.pageNumber > 0 %}page/{{ categoryPage.pageNumber }}/{% endif %}"
+eleventyComputed:
+  metaTitle: "{% if categoryPage.pageNumber > 0 %}{{ categoryPage.name }} - Page {{ categoryPage.pageNumber }} - {{ site.title }}{% else %}{{ categoryPage.name }} - {{ site.title }}{% endif %}"
+---
+{% include "partials/sidebar.njk" %}
+
+<div class="page">
+  <div class="inner">
+    <h1 class="title">{{ categoryPage.name }}</h1>
+    <div class="body">
+      {% set posts = categoryPage.posts %}
+      {% include "partials/feed.njk" %}
+      {% set pagination = categoryPage %}
+      {% include "partials/pagination.njk" %}
+    </div>
+  </div>
+</div>

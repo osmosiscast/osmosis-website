@@ -1,0 +1,21 @@
+---
+layout: base.njk
+isIndex: true
+pagination:
+  data: collections.posts
+  size: 4
+  alias: posts
+permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pageNumber }}/{% endif %}"
+eleventyComputed:
+  metaTitle: "{% if pagination.pageNumber > 0 %}Posts - Page {{ pagination.pageNumber }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}"
+---
+{% include "partials/sidebar.njk" %}
+
+<div class="page">
+  <div class="inner">
+    <div class="body">
+      {% include "partials/feed.njk" %}
+      {% include "partials/pagination.njk" %}
+    </div>
+  </div>
+</div>
