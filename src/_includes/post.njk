@@ -1,0 +1,66 @@
+---
+layout: base.njk
+---
+{% from "partials/icons.njk" import contactHref, iconSvg %}
+
+<div class="post">
+  <div class="buttons">
+    <a class="button button-articles" href="/">All Episodes</a>
+    {% include "partials/theme-switcher.njk" %}
+  </div>
+
+  <div class="content">
+    <div class="post-content">
+      <h1 class="title">{{ title }}</h1>
+      <div class="body">
+        {{ content | safe }}
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="post-meta">
+      <p class="date">
+        Published {{ date | postDate }}
+      </p>
+    </div>
+    {% if tags %}
+    <div class="post-tags">
+      <ul class="list">
+        {% for tag in tags %}
+        <li class="item">
+          <a class="button" href="/tag/{{ tag | slugify }}/">{{ tag }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    <div class="post-author">
+      <p class="bio">{{ site.author.bio }}</p>
+      {% set contacts = site.author.contacts %}
+      <div class="sidebar-contacts">
+        <ul class="list">
+          {% for name, value in contacts %}
+            {% if value and value != "" and value != "#" %}
+            <li class="item">
+              {% if name == "mastodon" %}
+              <a class="link" href="{{ contactHref(name, value) | trim }}" target="_blank" rel="noopener noreferrer me">
+                {{ iconSvg(name) }}
+              </a>
+              {% elif name == "email" %}
+              <a class="link" href="{{ contactHref(name, value) | trim }}">
+                {{ iconSvg(name) }}
+              </a>
+              {% else %}
+              <a class="link" href="{{ contactHref(name, value) | trim }}" target="_blank" rel="noopener noreferrer">
+                {{ iconSvg(name) }}
+              </a>
+              {% endif %}
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

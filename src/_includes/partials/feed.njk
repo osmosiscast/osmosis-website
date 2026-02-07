@@ -1,0 +1,24 @@
+<div class="feed">
+  {% for post in posts %}
+  <div class="item">
+    <div class="meta">
+      <time class="time" datetime="{{ post.data.date | isoDate }}">
+        {{ post.data.date | feedDate }}
+      </time>
+      <span class="divider"></span>
+      <span class="category">
+        <a class="link" href="/category/{{ post.data.category | slugify }}/">
+          {{ post.data.category }}
+        </a>
+      </span>
+    </div>
+    <h2 class="title">
+      <a class="link" href="{{ post.data.slug }}">
+        {{ post.data.title }}
+      </a>
+    </h2>
+    <p class="description">{{ post.data.description }}</p>
+    <a class="more" href="{{ post.data.slug }}">More</a>
+  </div>
+  {% endfor %}
+</div>
