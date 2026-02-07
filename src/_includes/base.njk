@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% set metaTitle = renderData.metaTitle or (title + " - " + site.title) if title else site.title + " - " + site.subtitle %}
+  {% set metaDescription = description or site.subtitle %}
+  {% set metaImage = socialImage %}
+  {% include "partials/meta.njk" %}
+  <link rel="stylesheet" href="/assets/scss/main.css">
+  <script>{{ theme_js | safe }}</script>
+</head>
+<body>
+  <div class="layout">
+    {{ content | safe }}
+  </div>
+</body>
+</html>

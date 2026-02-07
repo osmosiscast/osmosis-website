@@ -1,0 +1,65 @@
+{% from "partials/icons.njk" import contactHref, iconSvg %}
+
+<div class="sidebar">
+  <div class="inner">
+    {# Author #}
+    <div class="sidebar-author">
+      <a href="/">
+        <img alt="{{ site.author.name }}" src="{{ site.author.photo }}" class="photo">
+      </a>
+      <div class="title-container">
+        {% if isIndex %}
+        <h1 class="title">
+          <a class="link" href="/">{{ site.author.name }}</a>
+        </h1>
+        {% else %}
+        <h2 class="title">
+          <a class="link" href="/">{{ site.author.name }}</a>
+        </h2>
+        {% endif %}
+        {% include "partials/theme-switcher.njk" %}
+      </div>
+      <p class="subtitle">{{ site.author.bio }}</p>
+    </div>
+
+    {# Menu #}
+    <nav class="sidebar-menu">
+      <ul class="list">
+        {% for item in site.menu %}
+        <li class="item">
+          <a class="link" href="{{ item.path }}">{{ item.label }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {# Contacts #}
+    {% set contacts = site.author.contacts %}
+    <div class="sidebar-contacts">
+      <ul class="list">
+        {% for name, value in contacts %}
+          {% if value and value != "" and value != "#" %}
+          <li class="item">
+            {% if name == "mastodon" %}
+            <a class="link" href="{{ contactHref(name, value) | trim }}" target="_blank" rel="noopener noreferrer me">
+              {{ iconSvg(name) }}
+            </a>
+            {% elif name == "email" %}
+            <a class="link" href="{{ contactHref(name, value) | trim }}">
+              {{ iconSvg(name) }}
+            </a>
+            {% else %}
+            <a class="link" href="{{ contactHref(name, value) | trim }}" target="_blank" rel="noopener noreferrer">
+              {{ iconSvg(name) }}
+            </a>
+            {% endif %}
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+
+    {# Copyright #}
+    <div class="sidebar-copyright">{{ site.copyright }}</div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="pagination">
+  <div class="previous">
+    {% if pagination.href.previous %}
+    <a rel="prev" class="previous-link" href="{{ pagination.href.previous }}">
+      &larr; PREV
+    </a>
+    {% else %}
+    <a class="previous-link disable" href="/">
+      &larr; PREV
+    </a>
+    {% endif %}
+  </div>
+  <div class="next">
+    {% if pagination.href.next %}
+    <a rel="next" class="next-link" href="{{ pagination.href.next }}">
+      NEXT &rarr;
+    </a>
+    {% else %}
+    <a class="next-link disable" href="/">
+      NEXT &rarr;
+    </a>
+    {% endif %}
+  </div>
+</div>

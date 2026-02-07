@@ -1,0 +1,14 @@
+---
+layout: base.njk
+---
+{% include "partials/sidebar.njk" %}
+<div class="page">
+  <div class="inner">
+    {% if title %}
+    <h1 class="title">{{ title }}</h1>
+    {% endif %}
+    <div class="body">
+      {{ content | safe }}
+    </div>
+  </div>
+</div>
