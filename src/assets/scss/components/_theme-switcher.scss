@@ -36,7 +36,7 @@
     transition: stroke-dasharray 200ms ease-in, opacity 400ms ease-in;
   }
 
-  &.dark {
+  .dark & {
     .moon {
       opacity: 1;
       stroke-dasharray: 1px 1px;

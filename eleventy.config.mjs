@@ -50,6 +50,10 @@ export default function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("isoDate", (dateValue) => {
+    return new Date(dateValue).toISOString().split("T")[0];
+  });
+
   eleventyConfig.addPassthroughCopy("src/assets/js");
   eleventyConfig.addPassthroughCopy({
     "content/osmosis-logo-square.png": "osmosis-logo-square.png",
