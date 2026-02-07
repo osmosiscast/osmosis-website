@@ -1,7 +1,12 @@
 import * as sass from "sass";
 import path from "path";
+import { readFileSync } from "fs";
 
 export default function (eleventyConfig) {
+  eleventyConfig.addGlobalData(
+    "theme_js",
+    readFileSync("src/assets/js/theme.js", "utf-8")
+  );
   // Ignore Gatsby-only directories during parallel migration
   eleventyConfig.ignores.add("src/components/");
   eleventyConfig.ignores.add("src/templates/");
@@ -30,7 +35,25 @@ export default function (eleventyConfig) {
     },
   });
 
+  eleventyConfig.addFilter("postDate", (dateValue) => {
+    return new Date(dateValue).toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  });
+
+  eleventyConfig.addFilter("feedDate", (dateValue) => {
+    return new Date(dateValue).toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+    });
+  });
+
   eleventyConfig.addPassthroughCopy("src/assets/js");
+  eleventyConfig.addPassthroughCopy({
+    "content/osmosis-logo-square.png": "osmosis-logo-square.png",
+  });
 
   return {
     dir: {
