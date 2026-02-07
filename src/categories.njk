@@ -1,0 +1,24 @@
+---
+layout: base.njk
+permalink: /categories/
+eleventyComputed:
+  metaTitle: "Categories - {{ site.title }}"
+---
+{% include "partials/sidebar.njk" %}
+
+<div class="page">
+  <div class="inner">
+    <h1 class="title">Categories</h1>
+    <div class="body">
+      <ul>
+        {% for category in collections.categoriesList %}
+        <li>
+          <a href="/category/{{ category.slug }}/">
+            {{ category.name }} ({{ category.count }})
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

@@ -29,7 +29,7 @@ layout: base.njk
       <ul class="list">
         {% for tag in tags %}
         <li class="item">
-          <a class="button" href="/tag/{{ tag | slugify }}/">{{ tag }}</a>
+          <a class="button" href="/tag/{{ tag | toSlug }}/">{{ tag }}</a>
         </li>
         {% endfor %}
       </ul>

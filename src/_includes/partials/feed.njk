@@ -7,7 +7,7 @@
       </time>
       <span class="divider"></span>
       <span class="category">
-        <a class="link" href="/category/{{ post.data.category | slugify }}/">
+        <a class="link" href="/category/{{ post.data.category | toSlug }}/">
           {{ post.data.category }}
         </a>
       </span>

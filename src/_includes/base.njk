@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% set metaTitle = renderData.metaTitle or (title + " - " + site.title) if title else site.title + " - " + site.subtitle %}
+  {% if not metaTitle %}
+    {% set metaTitle = (title + " - " + site.title) if title else site.title + " - " + site.subtitle %}
+  {% endif %}
   {% set metaDescription = description or site.subtitle %}
   {% set metaImage = socialImage %}
   {% include "partials/meta.njk" %}
