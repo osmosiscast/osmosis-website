@@ -20,7 +20,7 @@ function paginationHref(basePath, pageNumber) {
 }
 
 function getPublishedPosts(collectionApi, buildTime) {
-  return collectionApi
+  const posts = collectionApi
     .getFilteredByGlob("src/posts/*/index.md")
     .filter((item) => {
       if (item.data.template !== "post") return false;
@@ -29,6 +29,17 @@ function getPublishedPosts(collectionApi, buildTime) {
       return new Date(item.data.date) <= buildTime;
     })
     .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+  for (const post of posts) {
+    if (!post.data.category) {
+      console.warn(`Post "${post.data.title}" has no category`);
+    }
+    if (!post.data.tags || post.data.tags.length === 0) {
+      console.warn(`Post "${post.data.title}" has no tags`);
+    }
+  }
+
+  return posts;
 }
 
 function buildPaginatedPages(groupName, posts, urlPrefix) {
