@@ -3,6 +3,8 @@ import path from "path";
 import { readFileSync } from "fs";
 
 export default function (eleventyConfig) {
+  const buildTime = new Date();
+  eleventyConfig.addGlobalData("buildTime", buildTime);
   eleventyConfig.addGlobalData(
     "theme_js",
     readFileSync("src/assets/js/theme.js", "utf-8")
@@ -55,15 +57,13 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addCollection("posts", function (collectionApi) {
-    const now = new Date();
     return collectionApi
       .getFilteredByGlob("src/posts/*/index.md")
       .filter((item) => {
-        return (
-          item.data.template === "post" &&
-          !item.data.draft &&
-          new Date(item.data.date) <= now
-        );
+        if (item.data.template !== "post") return false;
+        if (item.data.draft) return false;
+        if (!item.data.date || isNaN(new Date(item.data.date))) return false;
+        return new Date(item.data.date) <= buildTime;
       })
       .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
   });
