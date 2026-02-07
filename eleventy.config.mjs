@@ -54,6 +54,20 @@ export default function (eleventyConfig) {
     return new Date(dateValue).toISOString().split("T")[0];
   });
 
+  eleventyConfig.addCollection("posts", function (collectionApi) {
+    const now = new Date();
+    return collectionApi
+      .getFilteredByGlob("src/posts/*/index.md")
+      .filter((item) => {
+        return (
+          item.data.template === "post" &&
+          !item.data.draft &&
+          new Date(item.data.date) <= now
+        );
+      })
+      .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+  });
+
   eleventyConfig.addPassthroughCopy("src/assets/js");
   eleventyConfig.addPassthroughCopy({
     "content/osmosis-logo-square.png": "osmosis-logo-square.png",
