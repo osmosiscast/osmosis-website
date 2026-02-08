@@ -4,6 +4,7 @@ pagination:
   data: collections.categoryPages
   size: 1
   alias: categoryPage
+  addAllPagesToCollections: true
 permalink: "/category/{{ categoryPage.slug }}/{% if categoryPage.pageNumber > 0 %}page/{{ categoryPage.pageNumber }}/{% endif %}"
 eleventyComputed:
   metaTitle: "{% if categoryPage.pageNumber > 0 %}{{ categoryPage.name }} - Page {{ categoryPage.pageNumber }} - {{ site.title }}{% else %}{{ categoryPage.name }} - {{ site.title }}{% endif %}"
