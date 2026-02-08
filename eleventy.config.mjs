@@ -37,6 +37,11 @@ function getPublishedPosts(collectionApi, buildTime) {
     if (!post.data.tags || post.data.tags.length === 0) {
       console.warn(`Post "${post.data.title}" has no tags`);
     }
+    if (post.data.description && /<[a-z][^>]*>/i.test(post.data.description)) {
+      console.warn(
+        `Post "${post.data.title}" has HTML tags in description — these render as literal text in RSS feeds and meta tags`
+      );
+    }
   }
 
   return posts;
@@ -117,6 +122,10 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter("isoDate", (dateValue) => {
     return new Date(dateValue).toISOString().split("T")[0];
+  });
+
+  eleventyConfig.addFilter("rfc2822Date", (dateValue) => {
+    return new Date(dateValue).toUTCString();
   });
 
   eleventyConfig.addFilter("toSlug", toSlug);
