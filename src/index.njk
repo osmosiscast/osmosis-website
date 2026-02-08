@@ -5,6 +5,7 @@ pagination:
   data: collections.posts
   size: 4
   alias: posts
+  addAllPagesToCollections: true
 permalink: "{% if pagination.pageNumber == 0 %}/{% else %}/page/{{ pagination.pageNumber }}/{% endif %}"
 eleventyComputed:
   metaTitle: "{% if pagination.pageNumber > 0 %}Posts - Page {{ pagination.pageNumber }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}"

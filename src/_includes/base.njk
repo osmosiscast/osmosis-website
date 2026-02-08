@@ -9,6 +9,8 @@
   {% set metaDescription = description or site.subtitle %}
   {% set metaImage = socialImage %}
   {% include "partials/meta.njk" %}
+  <meta name="theme-color" content="hsl(31, 92%, 62%)">
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="/assets/scss/main.css">
   <script>{{ theme_js | safe }}</script>
 </head>
