@@ -26,14 +26,14 @@ jobs:
       - name: Deploy Gatsby preview
         uses: cloudflare/wrangler-action@v3
         with:
-          wranglerVersion: "^4.64.0"
+          wranglerVersion: "4.64.0"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy -c wrangler.branch.toml
       - name: Deploy Eleventy preview
         uses: cloudflare/wrangler-action@v3
         with:
-          wranglerVersion: "^4.64.0"
+          wranglerVersion: "4.64.0"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy -c wrangler.preview.toml
