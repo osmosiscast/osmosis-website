@@ -10,9 +10,7 @@ html_handling = "auto-trailing-slash"
 [[routes]]
 pattern = "osmosiscast.com"
 custom_domain = true
-override_existing_dns_record = true
 
 [[routes]]
 pattern = "www.osmosiscast.com"
 custom_domain = true
-override_existing_dns_record = true
