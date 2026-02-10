@@ -1,11 +1,15 @@
 name: Deploy Preview
 
 on:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+# All PRs deploy to the same Worker names (osmosis-website-branch, osmosis-website-preview).
+# Concurrent PRs will overwrite each other. Acceptable for a single-maintainer repo.
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,9 +22,16 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
-      - name: Deploy branch preview
+      - run: npx @11ty/eleventy
+      - name: Deploy Gatsby preview
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy -c wrangler.branch.toml
+      - name: Deploy Eleventy preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy -c wrangler.preview.toml
