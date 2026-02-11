@@ -8,8 +8,6 @@ on:
 permissions:
   contents: read
 
-# All PRs deploy to the same Worker names (osmosis-website-branch, osmosis-website-preview).
-# Concurrent PRs will overwrite each other. Acceptable for a single-maintainer repo.
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,19 +19,35 @@ jobs:
           node-version-file: '.node-version'
           cache: 'npm'
       - run: npm ci
-      - run: npm run build
       - run: npx @11ty/eleventy
-      - name: Deploy Gatsby preview
+      - name: Derive worker names
+        id: worker
+        run: |
+          branch="${{ github.head_ref || github.ref_name }}"
+          slug=$(echo "$branch" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+          echo "preview=osmosis-preview-${slug}" >> "$GITHUB_OUTPUT"
+          echo "cleanup=osmosis-cleanup-${slug}" >> "$GITHUB_OUTPUT"
+          echo "url=https://osmosis-preview-${slug}.osmosiscast.workers.dev" >> "$GITHUB_OUTPUT"
+      - name: Deploy preview
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: "4.64.0"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy -c wrangler.branch.toml
-      - name: Deploy Eleventy preview
+          command: deploy -c wrangler.preview.toml --name ${{ steps.worker.outputs.preview }}
+      - name: Deploy cleanup worker
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: "4.64.0"
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy -c wrangler.preview.toml
+          workingDirectory: workers/cleanup
+          command: deploy --name ${{ steps.worker.outputs.cleanup }} --var PREVIEW_NAME:${{ steps.worker.outputs.preview }} --var CLEANUP_NAME:${{ steps.worker.outputs.cleanup }}
+      - name: Set cleanup worker secrets
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "$CF_API_TOKEN" | npx wrangler secret put CF_API_TOKEN --name ${{ steps.worker.outputs.cleanup }}
+          echo "$ACCOUNT_ID" | npx wrangler secret put ACCOUNT_ID --name ${{ steps.worker.outputs.cleanup }}
+      - run: echo "### Preview deployed to ${{ steps.worker.outputs.url }} (auto-expires in 3h)" >> "$GITHUB_STEP_SUMMARY"

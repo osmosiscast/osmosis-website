@@ -1,4 +1,3 @@
-name = "osmosis-website-preview"
 compatibility_date = "2026-02-10"
 workers_dev = true
 
@@ -6,7 +5,3 @@ workers_dev = true
 directory = "./_site"
 not_found_handling = "404-page"
 html_handling = "auto-trailing-slash"
-
-[[routes]]
-pattern = "preview.osmosiscast.com"
-custom_domain = true
