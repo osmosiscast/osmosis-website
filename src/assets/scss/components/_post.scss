@@ -2,6 +2,8 @@
 @use "../mixins" as *;
 
 .post {
+  width: 100%;
+
   .content {
     @include margin-auto();
   }
