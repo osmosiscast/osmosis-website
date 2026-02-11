@@ -12,7 +12,7 @@ deploy-preview:
     #!/usr/bin/env bash
     set -euo pipefail
     branch=$(git branch --show-current)
-    slug=$(echo "$branch" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+    slug=$(echo "$branch" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//' | cut -c1-47)
     echo "Deploying branch '${branch}'..."
     gh workflow run "Deploy Preview" --ref "$branch"
     sleep 3

@@ -24,7 +24,7 @@ jobs:
         id: worker
         run: |
           branch="${{ github.head_ref || github.ref_name }}"
-          slug=$(echo "$branch" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//')
+          slug=$(echo "$branch" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9-]/-/g' | sed 's/--*/-/g' | sed 's/^-//' | sed 's/-$//' | cut -c1-47)
           echo "preview=osmosis-preview-${slug}" >> "$GITHUB_OUTPUT"
           echo "cleanup=osmosis-cleanup-${slug}" >> "$GITHUB_OUTPUT"
           echo "url=https://osmosis-preview-${slug}.osmosiscast.workers.dev" >> "$GITHUB_OUTPUT"
