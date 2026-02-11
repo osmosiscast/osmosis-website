@@ -18,8 +18,8 @@ eleventyExcludeFromCollections: true
     <atom:link href="{{ site.url }}/rss.xml" rel="self" type="application/rss+xml"/>
     <copyright><![CDATA[{{ site.copyright | safe }}]]></copyright>
     <language><![CDATA[en-gb]]></language>
-    <managingEditor><![CDATA[{{ site.author.name | safe }}]]></managingEditor>
-    <webMaster><![CDATA[{{ site.author.name | safe }}]]></webMaster>
+    <managingEditor>{{ site.author.contacts.email }} ({{ site.author.name }})</managingEditor>
+    <webMaster>{{ site.author.contacts.email }} ({{ site.author.name }})</webMaster>
     <ttl>60</ttl>
     <category><![CDATA[Science]]></category>
     <category><![CDATA[Natural Sciences]]></category>
@@ -50,7 +50,7 @@ eleventyExcludeFromCollections: true
       <pubDate>{{ post.data.date | rfc2822Date }}</pubDate>
       <enclosure url="{{ post.data.url }}" length="{{ post.data.size }}" type="audio/mpeg"/>
       <content:encoded><![CDATA[{{ post.templateContent | safe }}]]></content:encoded>
-      <itunes:explicit>no</itunes:explicit>
+      <itunes:explicit>false</itunes:explicit>
       <itunes:episodeType>full</itunes:episodeType>
       <itunes:title>{{ post.data.title | striptags }}</itunes:title>
       <itunes:season>{{ post.data.season }}</itunes:season>
