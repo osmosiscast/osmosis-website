@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Build website
-curl -X POST ${OSMOSIS_BUILD_WEBHOOK}
 
 # Notify episode release (discord)
 episode_directory="/volume8/share/"
