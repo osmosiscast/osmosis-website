@@ -4,14 +4,18 @@ export default {
     const base = `https://api.cloudflare.com/client/v4/accounts/${env.ACCOUNT_ID}/workers/scripts`;
 
     const response = await fetch(`${base}/${env.PREVIEW_NAME}`, { headers });
-    const data = await response.json();
 
-    if (!data.success) {
-      console.log(`Preview ${env.PREVIEW_NAME} already gone, deleting self.`);
-      await fetch(`${base}/${env.CLEANUP_NAME}`, { method: "DELETE", headers });
+    if (!response.ok) {
+      if (response.status === 404) {
+        console.log(`Preview ${env.PREVIEW_NAME} already gone, deleting self.`);
+        await fetch(`${base}/${env.CLEANUP_NAME}`, { method: "DELETE", headers });
+      } else {
+        console.log(`Failed to check preview ${env.PREVIEW_NAME}: HTTP ${response.status}. Will retry next cron.`);
+      }
       return;
     }
 
+    const data = await response.json();
     const modified = new Date(data.result.modified_on);
     const ageMs = Date.now() - modified.getTime();
     const ttlMs = 3 * 60 * 60 * 1000;
@@ -23,7 +27,11 @@ export default {
     }
 
     console.log(`Preview ${env.PREVIEW_NAME} expired (${(ageMs / 3600000).toFixed(1)}h old). Tearing down.`);
-    await fetch(`${base}/${env.PREVIEW_NAME}`, { method: "DELETE", headers });
+    const delResponse = await fetch(`${base}/${env.PREVIEW_NAME}`, { method: "DELETE", headers });
+    if (!delResponse.ok) {
+      console.log(`Failed to delete preview ${env.PREVIEW_NAME}: HTTP ${delResponse.status}. Will retry next cron.`);
+      return;
+    }
     await fetch(`${base}/${env.CLEANUP_NAME}`, { method: "DELETE", headers });
   },
 };
