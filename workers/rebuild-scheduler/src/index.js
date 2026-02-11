@@ -23,13 +23,16 @@ export default {
     console.error(message);
 
     if (env.DISCORD_WEBHOOK) {
-      await fetch(env.DISCORD_WEBHOOK, {
+      const discordResponse = await fetch(env.DISCORD_WEBHOOK, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           content: `⚠️ **Osmosis rebuild failed**\n${message}`,
         }),
       });
+      if (!discordResponse.ok) {
+        console.error(`Discord notification failed: HTTP ${discordResponse.status}`);
+      }
     }
   },
 };

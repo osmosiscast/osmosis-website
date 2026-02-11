@@ -2,7 +2,7 @@
 
 Cloudflare Cron Worker that triggers a production site rebuild via GitHub Actions `workflow_dispatch`.
 
-Runs every Sunday at 22:00 UTC (`0 22 * * 7` — Cloudflare uses 1=Mon, 7=Sun). This keeps scheduled episodes (future `date` frontmatter) publishing without manual intervention.
+Runs every Sunday at 21:50 UTC (`50 21 * * 1` — Cloudflare uses 1=Sun, 7=Sat), 10 minutes before the Synology episode release notification. This keeps scheduled episodes (future `date` frontmatter) publishing without manual intervention.
 
 On failure, posts a plain text alert to the **#episode-release** Discord channel:
 

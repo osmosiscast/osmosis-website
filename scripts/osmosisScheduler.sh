@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Notify episode release (discord)
 episode_directory="/volume8/share/"
 temporary_payload_list="/tmp/osmosisScheduler_payload_files.log"
