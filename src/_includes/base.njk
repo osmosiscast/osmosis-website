@@ -7,7 +7,7 @@
     {% set metaTitle = (title + " - " + site.title) if title else site.title + " - " + site.subtitle %}
   {% endif %}
   {% set metaDescription = description or site.subtitle %}
-  {% set metaImage = socialImage %}
+  {% set metaImage = "https://assets.osmosiscast.com/static-assets/osmosis-logo-square.png" if socialImage else "" %}
   {% include "partials/meta.njk" %}
   <meta name="theme-color" content="hsl(31, 92%, 62%)">
   <link rel="manifest" href="/manifest.json">
