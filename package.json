@@ -16,24 +16,21 @@
   },
   "license": "MIT",
   "author": "Osmosis Media <osmosiscast@gmail.com>",
+  "type": "module",
   "scripts": {
-    "build": "npm run clean && npx gatsby build --prefix-paths",
-    "clean": "rimraf .cache public",
-    "format": "npm run format:ts && npm run format:scss",
+    "build": "eleventy",
+    "clean": "rm -rf _site",
+    "format": "npm run format:scss && npm run format:njk",
+    "format:njk": "poetry run djlint src/_includes/ --profile=nunjucks --reformat",
     "format:scss": "stylelint \"src/**/*.scss\" --fix",
-    "format:ts": "eslint \"src\" --ext .tsx,.ts --fix && prettier --write .",
-    "lint": "npm run lint:ts && npm run lint:scss",
+    "lint": "npm run lint:scss && npm run lint:njk",
     "lint:commit": "commitlint",
+    "lint:njk": "poetry run djlint src/_includes/ --profile=nunjucks --lint",
     "lint:scss": "stylelint \"src/**/*.scss\"",
     "lint:staged": "lint-staged",
-    "lint:ts": "eslint \"src\" --ext .tsx,.ts && prettier --check .",
     "prepare": "npx husky",
-    "semantic-release": "semantic-release",
-    "serve": "npx gatsby serve",
-    "start": "npm run clean && gatsby develop",
-    "test": "jest --config ./internal/testing/jest-config.ts",
-    "test:update-snapshot": "jest --updateSnapshot --config ./internal/testing/jest-config.ts",
-    "test:watch": "jest --watch --config ./internal/testing/jest-config.ts"
+    "serve": "eleventy --serve",
+    "start": "eleventy --serve"
   },
   "commitlint": {
     "extends": [
@@ -41,8 +38,8 @@
     ]
   },
   "lint-staged": {
-    "*.tsx?": [
-      "npm run format:ts"
+    "*.njk": [
+      "poetry run djlint --profile=nunjucks --lint"
     ],
     "*.(sc|sa|c)ss": [
       "npm run format:scss"
@@ -55,93 +52,22 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "@11ty/eleventy-plugin-rss": "^2.0.0",
-    "@alxshelepenok/diesel": "^1.0.1293",
-    "@alxshelepenok/diesel-extensions": "^1.0.1223",
-    "classnames": "^2.5.1",
-    "disqus-react": "^1.1.5",
-    "gatsby": "^5.14.1",
-    "gatsby-plugin-catch-links": "^5.13.1",
-    "gatsby-plugin-image": "^3.13.1",
-    "gatsby-plugin-manifest": "^5.13.1",
-    "gatsby-plugin-podcast-feed": "github:osmosiscast/gatsby-plugin-podcast-feed",
-    "gatsby-plugin-sass": "^6.13.1",
-    "gatsby-plugin-sharp": "^5.13.1",
-    "gatsby-plugin-sitemap": "^6.13.1",
-    "gatsby-remark-autolink-headers": "^6.13.1",
-    "gatsby-remark-copy-linked-files": "^6.13.1",
-    "gatsby-remark-external-links": "0.0.4",
-    "gatsby-remark-images": "^7.13.1",
-    "gatsby-remark-prismjs": "^7.13.1",
-    "gatsby-remark-responsive-iframe": "^6.13.1",
-    "gatsby-remark-smartypants": "^6.13.1",
-    "gatsby-source-filesystem": "^5.13.1",
-    "gatsby-transformer-remark": "^6.13.1",
-    "gatsby-transformer-sharp": "^5.13.1",
-    "prismjs": "^1.30.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "@11ty/eleventy-plugin-rss": "^2.0.0"
   },
   "devDependencies": {
-    "@alxshelepenok/eslint-config": "^1.0.458",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@jest/globals": "^29.6.4",
-    "@semantic-release/exec": "6.0.3",
-    "@semantic-release/git": "10.0.1",
-    "@swc/core": "^1.5.7",
-    "@swc/jest": "^0.2.36",
-    "@testing-library/dom": "^10.1.0",
-    "@testing-library/jest-dom": "^6.4.5",
-    "@testing-library/react": "^15.0.7",
-    "@types/gatsby-transformer-remark": "^2.9.4",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.12",
-    "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.3.0",
-    "@types/react-test-renderer": "^18.3.0",
-    "@types/sass": "^1.45.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "autoprefixer": "^10.4.19",
-    "browserslist": "^4.23.0",
-    "conventional-changelog-conventionalcommits": "7.0.2",
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jest": "^27.9.0",
-    "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-simple-import-sort": "^12.1.0",
     "husky": "^9.1.7",
-    "identity-obj-proxy": "3.0.0",
-    "jest": "^29.6.4",
-    "jest-environment-jsdom": "^29.6.4",
-    "jest-svg-transformer": "^1.0.0",
     "lint-staged": "^15.2.2",
-    "lost": "9.0.2",
-    "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-packagejson": "^2.5.0",
-    "react-test-renderer": "^18.3.1",
-    "rimraf": "5.0.7",
     "sass": "^1.75.0",
-    "semantic-release": "^23.0.8",
     "stylelint": "^15.11.0",
     "stylelint-config-recommended-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
-    "stylelint-scss": "^5.3.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.2.2"
+    "stylelint-scss": "^5.3.2"
   },
   "engines": {
     "node": ">=18"
-  },
-  "optionalDependencies": {
-    "@parcel/watcher-linux-x64-glibc": "^2.4.1"
   }
 }

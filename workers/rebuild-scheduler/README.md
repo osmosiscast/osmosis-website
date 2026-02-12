@@ -38,6 +38,14 @@ Both commands prompt interactively — paste the value when asked.
 
 ## Test
 
-Cloudflare dashboard > Workers & Pages > osmosis-rebuild-scheduler > Triggers > Run now.
+There is no manual trigger button in the Cloudflare dashboard. To test, temporarily change the cron to fire a few minutes from now:
 
-Verify the GitHub Actions `deploy.yml` workflow fires on the `osmosiscast/osmosis-website` repo.
+1. Update `wrangler.toml` cron to a near-future time (e.g. `crons = ["30 14 * * *"]` for 14:30 UTC)
+2. `npx wrangler deploy`
+3. Tail logs: `npx wrangler tail osmosis-rebuild-scheduler --format pretty`
+4. Wait for the cron to fire — logs will show the result
+5. Revert `wrangler.toml` to `50 21 * * 1` and redeploy
+
+**Happy path:** Verify the GitHub Actions `deploy.yml` workflow fires on `osmosiscast/osmosis-website` (`gh run list --workflow deploy.yml --limit 1`).
+
+**Error path:** Set a bogus `GITHUB_TOKEN` (`echo "invalid" | npx wrangler secret put GITHUB_TOKEN --name osmosis-rebuild-scheduler`), trigger, and verify the alert appears in `#episode-release` on Discord. Restore the real token afterwards.
