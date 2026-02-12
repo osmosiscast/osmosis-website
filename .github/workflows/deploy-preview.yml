@@ -26,7 +26,7 @@ jobs:
       - name: Lint SCSS
         run: npm run lint:scss
       - name: Lint Nunjucks
-        run: djlint --extension=njk src/_includes/ --profile=nunjucks --lint
+        run: djlint --extension=njk src/_includes/ --lint
       - run: npx @11ty/eleventy
       - name: Derive worker names
         id: worker
