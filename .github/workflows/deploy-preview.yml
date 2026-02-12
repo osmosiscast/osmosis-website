@@ -18,7 +18,15 @@ jobs:
         with:
           node-version-file: '.node-version'
           cache: 'npm'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install djlint
       - run: npm ci
+      - name: Lint SCSS
+        run: npm run lint:scss
+      - name: Lint Nunjucks
+        run: djlint --extension=njk src/_includes/ --profile=nunjucks --lint
       - run: npx @11ty/eleventy
       - name: Derive worker names
         id: worker
