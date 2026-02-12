@@ -34,6 +34,10 @@ types-httplib2 = "^0.22.0.20240310"
 requires = ["poetry-core>=1.8.0"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.djlint]
+profile = "nunjucks"
+ignore = "H016,H030,H031"
+
 [[tool.mypy.overrides]]
 module = [
     "apiclient.*",
