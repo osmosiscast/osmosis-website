@@ -21,11 +21,11 @@
     "build": "eleventy",
     "clean": "rm -rf _site",
     "format": "npm run format:scss && npm run format:njk",
-    "format:njk": "poetry run djlint --extension=njk src/_includes/ --profile=nunjucks --reformat",
+    "format:njk": "poetry run djlint --extension=njk src/_includes/ --reformat",
     "format:scss": "stylelint \"src/**/*.scss\" --fix",
     "lint": "npm run lint:scss && npm run lint:njk",
     "lint:commit": "commitlint",
-    "lint:njk": "poetry run djlint --extension=njk src/_includes/ --profile=nunjucks --lint",
+    "lint:njk": "poetry run djlint --extension=njk src/_includes/ --lint",
     "lint:scss": "stylelint \"src/**/*.scss\"",
     "lint:staged": "lint-staged",
     "prepare": "npx husky",
@@ -39,7 +39,7 @@
   },
   "lint-staged": {
     "*.njk": [
-      "poetry run djlint --extension=njk --profile=nunjucks --lint"
+      "poetry run djlint --lint"
     ],
     "*.(sc|sa|c)ss": [
       "npm run format:scss"
