@@ -18,6 +18,7 @@ pids
 # build
 _site
 .cache
+public
 
 # coverage directory used by tools like istanbul
 coverage
