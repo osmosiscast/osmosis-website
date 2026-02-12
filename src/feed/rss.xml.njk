@@ -48,7 +48,7 @@ eleventyExcludeFromCollections: true
 {%- endfor %}
       <dc:creator><![CDATA[{{ site.author.name | safe }}]]></dc:creator>
       <pubDate>{{ post.data.date | rfc2822Date }}</pubDate>
-      <enclosure url="{{ post.data.url }}" length="{{ post.data.size }}" type="audio/mpeg"/>
+      <enclosure url="https://op3.dev/e/{{ post.data.url }}" length="{{ post.data.size }}" type="audio/mpeg"/>
       <content:encoded><![CDATA[{{ post.templateContent | safe }}]]></content:encoded>
       <itunes:explicit>false</itunes:explicit>
       <itunes:episodeType>full</itunes:episodeType>
