@@ -212,7 +212,7 @@ class PrepareEpisodePage:
             ).stdout.strip()
 
             website_repository_directory = os.path.expanduser(
-                "~/Documents/Development/osmosis-website/content/posts"
+                "~/Documents/Development/osmosis-website/src/posts"
             )
             content_directory = f"{date}-{season}-{episode}-{title}"
 
