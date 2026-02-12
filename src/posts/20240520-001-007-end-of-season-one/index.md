@@ -16,6 +16,11 @@ url: "https://assets.osmosiscast.com/content/episodes/001/007/season-end.mp3"
 size: 13490217
 season: 1
 duration: 843
+tags:
+- OsmosisPodcast
+- SeasonReview
+- FuturePlans
+- SciencePodcast
 ---
 
 [Jamie McMillan](https://www.linkedin.com/in/jamie-mcmillan-metrology/) and [Calum Morris](https://www.linkedin.com/in/calum-morris-7015a028b/) wrap up the first season of Osmosis with an outlook on what is still to come. We reflect on the first season and highlight future plans:
