@@ -2,8 +2,7 @@
 !*.json
 !*.md
 !*.mdx
-!*.ts
-!*.tsx
+!*.njk
 !*.yml
 !*.js
 /coverage/
