@@ -44,9 +44,14 @@
     "*.(sc|sa|c)ss": [
       "npm run format:scss"
     ],
-    "*.py": [
+    "scripts/*.py": [
       "poetry run ruff format",
       "poetry run bandit -r -s B404,B603,B605,B607",
+      "poetry run mypy --no-explicit-package-bases"
+    ],
+    "tests/*.py": [
+      "poetry run ruff format",
+      "poetry run bandit -r -s B101,B314,B404,B405,B603,B605,B607",
       "poetry run mypy --no-explicit-package-bases"
     ]
   },
