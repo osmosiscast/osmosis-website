@@ -21,13 +21,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install djlint
+      - run: pip install djlint pytest pyyaml
       - run: npm ci
       - name: Lint SCSS
         run: npm run lint:scss
       - name: Lint Nunjucks
         run: djlint --extension=njk src/_includes/ --lint
       - run: npx @11ty/eleventy
+      - name: Test build output
+        run: npm test
       - name: Derive worker names
         if: github.actor != 'dependabot[bot]'
         id: worker
