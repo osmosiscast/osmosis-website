@@ -29,7 +29,7 @@ jobs:
         run: djlint --extension=njk src/_includes/ --lint
       - run: npx @11ty/eleventy
       - name: Test build output
-        run: npm test
+        run: pytest tests/
       - name: Derive worker names
         if: github.actor != 'dependabot[bot]'
         id: worker
