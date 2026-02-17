@@ -46,15 +46,18 @@ jobs:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          count=$(curl -sf -H "Authorization: Bearer $CF_API_TOKEN" \
-            "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/workers/scripts" \
-            | jq '[.result[] | select(.has_schedule == true)] | length')
-          echo "cron_count=$count" >> "$GITHUB_OUTPUT"
+          response=$(curl -sf -H "Authorization: Bearer $CF_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/workers/scripts")
+          count=$(echo "$response" | jq '[.result[] | select(.handlers[] == "scheduled")] | length')
+          echo "count=$count"
           if [ "$count" -ge 5 ]; then
-            echo "::warning::Cron trigger limit reached ($count/5) — skipping cleanup worker. Preview will not auto-expire."
+            echo "can_deploy=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Cron trigger limit reached ($count/5) — skipping preview deploy."
+          else
+            echo "can_deploy=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Deploy preview
-        if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.cron_count < 5
+        if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.can_deploy == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: "4.64.0"
@@ -62,7 +65,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy -c wrangler.preview.toml --name ${{ steps.worker.outputs.preview }}
       - name: Deploy cleanup worker
-        if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.cron_count < 5
+        if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.can_deploy == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: "4.64.0"
@@ -71,14 +74,14 @@ jobs:
           workingDirectory: workers/cleanup
           command: deploy --name ${{ steps.worker.outputs.cleanup }} --var PREVIEW_NAME:${{ steps.worker.outputs.preview }} --var CLEANUP_NAME:${{ steps.worker.outputs.cleanup }}
       - name: Set cleanup worker secrets
-        if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.cron_count < 5
+        if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.can_deploy == 'true'
         env:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           echo "$CF_API_TOKEN" | npx wrangler secret put CF_API_TOKEN --name ${{ steps.worker.outputs.cleanup }}
           echo "$ACCOUNT_ID" | npx wrangler secret put ACCOUNT_ID --name ${{ steps.worker.outputs.cleanup }}
-      - if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.cron_count < 5
+      - if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.can_deploy == 'true'
         run: echo "### Preview deployed to ${{ steps.worker.outputs.url }} (auto-expires in 3h)" >> "$GITHUB_STEP_SUMMARY"
-      - if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.cron_count >= 5
+      - if: github.actor != 'dependabot[bot]' && steps.cron_check.outputs.can_deploy != 'true'
         run: echo "### Preview skipped — cron trigger limit reached (5/5). Delete a stale worker to free a slot." >> "$GITHUB_STEP_SUMMARY"
