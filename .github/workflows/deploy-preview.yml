@@ -29,6 +29,7 @@ jobs:
         run: djlint --extension=njk src/_includes/ --lint
       - run: npx @11ty/eleventy
       - name: Derive worker names
+        if: github.actor != 'dependabot[bot]'
         id: worker
         run: |
           branch="${{ github.head_ref || github.ref_name }}"
@@ -37,6 +38,7 @@ jobs:
           echo "cleanup=osmosis-cleanup-${slug}" >> "$GITHUB_OUTPUT"
           echo "url=https://osmosis-preview-${slug}.osmosiscast.workers.dev" >> "$GITHUB_OUTPUT"
       - name: Deploy preview
+        if: github.actor != 'dependabot[bot]'
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: "4.64.0"
@@ -44,6 +46,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: deploy -c wrangler.preview.toml --name ${{ steps.worker.outputs.preview }}
       - name: Deploy cleanup worker
+        if: github.actor != 'dependabot[bot]'
         uses: cloudflare/wrangler-action@v3
         with:
           wranglerVersion: "4.64.0"
@@ -52,10 +55,12 @@ jobs:
           workingDirectory: workers/cleanup
           command: deploy --name ${{ steps.worker.outputs.cleanup }} --var PREVIEW_NAME:${{ steps.worker.outputs.preview }} --var CLEANUP_NAME:${{ steps.worker.outputs.cleanup }}
       - name: Set cleanup worker secrets
+        if: github.actor != 'dependabot[bot]'
         env:
           CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           echo "$CF_API_TOKEN" | npx wrangler secret put CF_API_TOKEN --name ${{ steps.worker.outputs.cleanup }}
           echo "$ACCOUNT_ID" | npx wrangler secret put ACCOUNT_ID --name ${{ steps.worker.outputs.cleanup }}
-      - run: echo "### Preview deployed to ${{ steps.worker.outputs.url }} (auto-expires in 3h)" >> "$GITHUB_STEP_SUMMARY"
+      - if: github.actor != 'dependabot[bot]'
+        run: echo "### Preview deployed to ${{ steps.worker.outputs.url }} (auto-expires in 3h)" >> "$GITHUB_STEP_SUMMARY"
