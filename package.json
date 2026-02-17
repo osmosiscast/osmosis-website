@@ -30,7 +30,8 @@
     "lint:staged": "lint-staged",
     "prepare": "npx husky",
     "serve": "eleventy --serve",
-    "start": "eleventy --serve"
+    "start": "eleventy --serve",
+    "test": "poetry run pytest tests/"
   },
   "commitlint": {
     "extends": [

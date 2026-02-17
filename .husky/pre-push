@@ -1,1 +1,2 @@
-npx @11ty/eleventy --quiet
+[ -d _site ] || npm run build
+npm test
