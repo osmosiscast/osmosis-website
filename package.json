@@ -31,6 +31,7 @@
     "prepare": "npx husky",
     "serve": "eleventy --serve",
     "start": "eleventy --serve",
+    "check-workers": "poetry run python scripts/check_workers.py",
     "test": "poetry run pytest tests/"
   },
   "commitlint": {
